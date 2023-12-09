@@ -1,5 +1,10 @@
 # Problem
-
+Create a weather forecast that takes data from API and displays them on page.
 
 
 # Algorithm
+1. Create GETDATA async function with argument LOCATION
+    * Assign a var RESPONSE to an await fetch
+        - Fetch data from the Weather API with LOCATION arg embedded in url.
+    * Assign a var RESULT to await RESPONSE.json()
+    * Return RESULT
