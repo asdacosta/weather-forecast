@@ -1,6 +1,6 @@
 <div align='center'>
 
-# Template
+# Weather Forecast
 </div>
 <div align='center'>
     <h3>💻 Languages</h3>
@@ -16,13 +16,12 @@
     <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white" alt="npm badge">
     <img src="https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white" alt="ESLint badge">
     <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=black" alt="Prettier badge">
-<img src="https://img.shields.io/badge/Babel-F7B93E?style=for-the-badge&logo=babel&logoColor=black" alt="Babel badge">
+    <img src="https://img.shields.io/badge/Babel-F7B93E?style=for-the-badge&logo=babel&logoColor=black" alt="Babel badge">
     <!-- <h4><a href="https://asdacosta.github.io/###/">Live Preview</a></h4> -->
 </div>
 
 **Demo:**
 
-<img src="./readme-assets/folder.png" alt="folder">
 <!-- ![Live Demo](./readme-assets/) -->
 
 <details>
@@ -36,16 +35,16 @@
 
 **Mobile View:**
 
-<img src="./readme-assets/mobile.png" alt="desktop view">
+<!-- <img src="./readme-assets/mobile.png" alt="desktop view"> -->
 
 
 </details>
 
 ## 🌐 Origin
-<!-- [The Odin Project](https://www.theodinproject.com/) -->
+[The Odin Project](https://www.theodinproject.com/)
 
 ## 📝 Description
-Store all template files.
+Builds a weather forecast website using APIs.
 
 <details>
 <summary>Features</summary>
@@ -55,7 +54,7 @@ Store all template files.
 </details>
 
 ## 🎯 Relevance
-To solidify concepts of `###` in ###. 
+To solidify concepts of `Promise, Async/Await and Using APIs` in JavaScript. 
 
 ## 👥 Intended Audience
 Developers, users, recruiters.
@@ -109,4 +108,4 @@ Developers, users, recruiters.
 > [!IMPORTANT]
 > Seek contributor's consent for any code usage.
 
-**[🞁 Top](#template)**
+**[🞁 Top](#weather-forecast)**
