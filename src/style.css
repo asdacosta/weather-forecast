@@ -1,6 +1,6 @@
-/* body * {
-  border: 2px solid tomato;
-} */
+body * {
+  letter-spacing: 0.1rem;
+}
 
 body {
   display: flex;
@@ -53,14 +53,26 @@ input {
 }
 
 input,
-body > div > button {
+body > div:nth-child(2) > button {
   height: 2rem;
   font-size: 1rem;
 }
 
+input:hover {
+  border: 3px solid rgb(223, 168, 98);
+}
+
+body > div:nth-child(2) > button:hover {
+  background-color: burlywood;
+  cursor: pointer;
+  color: rgb(83, 83, 83);
+}
+
 h1 {
   font-size: 3rem;
+  color: black;
   font-weight: 700;
+  cursor: context-menu;
 }
 
 fieldset {
@@ -69,6 +81,12 @@ fieldset {
   flex-direction: column;
   gap: 1rem;
   padding: 1.5rem;
+  cursor: context-menu;
+  transition: transform 0.3s ease-in-out;
+}
+
+fieldset:hover {
+  transform: scale(1.05);
 }
 
 legend {
