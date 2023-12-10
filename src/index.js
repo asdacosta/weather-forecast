@@ -78,7 +78,7 @@ const searchLocation = (function () {
 
         dataLocation = objectLocation;
         dataReport = objectReport;
-        console.log(dataLocation);
+        console.log(locationData);
         console.log(dataReport);
 
         const displayLocationDetails = (function () {
@@ -92,6 +92,15 @@ const searchLocation = (function () {
           const dateAndTime = dataLocation.localtime.split(" ");
           getNodes.date.textContent = `Date: ${dateAndTime[0]}`;
           getNodes.time.textContent = `Time: ${dateAndTime[1]}`;
+        })();
+
+        const displayForecast = (function () {
+          getNodes.tempSpan.textContent = `Temperature: ${dataReport.temp_c}°`;
+          getNodes.windSpeedSpan.textContent = `Wind Speed: ${dataReport.wind_kph} kph`;
+          getNodes.windDirection.textContent = `Wind Direction: ${dataReport.wind_degree} ${dataReport.wind_dir}`;
+          getNodes.humidity.textContent = `Humidity: ${dataReport.humidity}`;
+          getNodes.radiation.textContent = `Ultraviolet Radiation: ${dataReport.uv}`;
+          getNodes.dayStatus.textContent = `Daylight Status: ${dataReport.is_day}`;
         })();
       })();
     } else {
