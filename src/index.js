@@ -90,9 +90,18 @@ const searchLocation = (function () {
             getNodes.region.textContent = "Unrecognized 🤷";
           }
 
-          const dateAndTime = dataLocation.localtime.split(" ");
-          getNodes.date.textContent = dateAndTime[0];
-          getNodes.time.textContent = dateAndTime[1];
+          const setDateAndTimeFormats = (function () {
+            const dateAndTime = dataLocation.localtime.split(" ");
+            const date = new Date(dateAndTime[0]);
+            const formattedDate = date.toLocaleDateString("en-US", {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            });
+
+            getNodes.date.textContent = formattedDate;
+            getNodes.time.textContent = dateAndTime[1];
+          })();
         })();
 
         const displayForecast = (function () {
