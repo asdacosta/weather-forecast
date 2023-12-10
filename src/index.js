@@ -59,114 +59,120 @@ const getData = async function (location) {
   return weatherData;
 };
 
-const searchLocation = (function () {
-  let dataLocation = null;
-  let dataReport = null;
+const displayLocationDetails = function (data) {
+  getNodes.header.textContent = data.name;
 
+  const setContinentAndCountry = (function () {
+    const continentName = data.tz_id.split("/");
+    getNodes.continent.textContent = continentName[0];
+    getNodes.country.textContent = data.country;
+  })();
+
+  const setRegion = (function () {
+    if (data.region !== "") {
+      getNodes.region.textContent = data.region;
+    } else {
+      getNodes.region.textContent = "Unrecognized 🤷";
+    }
+  })();
+
+  const setDateAndTimeFormats = (function () {
+    const dateAndTime = data.localtime.split(" ");
+    const date = new Date(dateAndTime[0]);
+    const formattedDate = date.toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+
+    getNodes.date.textContent = formattedDate;
+    getNodes.time.textContent = dateAndTime[1];
+  })();
+};
+
+const displayForecast = function (data) {
+  const setInitialForecasts = (function () {
+    getNodes.temp.textContent = `${data.temp_c}°C`;
+    getNodes.windSpeed.textContent = `${data.wind_kph} kph`;
+    getNodes.windDirection.textContent = `${data.wind_degree} (${data.wind_dir})`;
+    getNodes.humidity.textContent = `${data.humidity}%`;
+  })();
+
+  const setRadiation = (function () {
+    switch (true) {
+      case data.uv >= 0 && data.uv <= 2:
+        getNodes.radiation.textContent = "Low";
+        break;
+      case data.uv >= 3 && data.uv <= 5:
+        getNodes.radiation.textContent = "Moderate";
+        break;
+      case data.uv >= 6 && data.uv <= 7:
+        getNodes.radiation.textContent = "High";
+        break;
+      case data.uv >= 8 && data.uv <= 10:
+        getNodes.radiation.textContent = " Very High";
+        break;
+      case data.uv >= 11:
+        getNodes.radiation.textContent = "Extreme";
+        break;
+      default:
+        getNodes.radiation.textContent = "Unknown Radiation";
+        break;
+    }
+  })();
+
+  const setDayStatus = (function () {
+    data.is_day === 1
+      ? (getNodes.dayStatus.textContent = "Day")
+      : (getNodes.dayStatus.textContent = "Night");
+  })();
+};
+
+const toggleUnits = function (data) {
+  let toggleTemp = false;
+  let toggleWindSpeed = false;
+
+  const toggleTempUnit = (function () {
+    getNodes.tempButton.addEventListener("click", () => {
+      if (toggleTemp) {
+        getNodes.temp.textContent = `${data.temp_c}°C`;
+        toggleTemp = false;
+      } else {
+        getNodes.temp.textContent = `${data.temp_f}°F`;
+        toggleTemp = true;
+      }
+    });
+  })();
+
+  const toggleWindSpeedUnit = (function () {
+    getNodes.windSpeedButton.addEventListener("click", () => {
+      if (toggleWindSpeed) {
+        getNodes.windSpeed.textContent = `${data.wind_kph} kph`;
+        toggleWindSpeed = false;
+      } else {
+        getNodes.windSpeed.textContent = `${data.wind_mph} mph`;
+        toggleWindSpeed = true;
+      }
+    });
+  })();
+};
+
+const searchLocation = (function () {
   getNodes.searchButton.addEventListener("click", () => {
     const location = getNodes.searchInput.value.trim();
 
     if (location !== "") {
       const extractFromWeatherData = (async function () {
-        const locationData = await getData(location);
-        const objectLocation = locationData.location;
-        const objectReport = locationData.current;
+        const weatherData = await getData(location);
+        const locationData = weatherData.location;
+        const reportData = weatherData.current;
 
-        dataLocation = objectLocation;
-        dataReport = objectReport;
-        console.log(locationData);
-        console.log(dataReport);
-
-        const displayLocationDetails = (function () {
-          getNodes.header.textContent = dataLocation.name;
-
-          const continentName = dataLocation.tz_id.split("/");
-          getNodes.continent.textContent = continentName[0];
-          getNodes.country.textContent = dataLocation.country;
-
-          if (dataLocation.region !== "") {
-            getNodes.region.textContent = dataLocation.region;
-          } else {
-            getNodes.region.textContent = "Unrecognized 🤷";
-          }
-
-          const setDateAndTimeFormats = (function () {
-            const dateAndTime = dataLocation.localtime.split(" ");
-            const date = new Date(dateAndTime[0]);
-            const formattedDate = date.toLocaleDateString("en-US", {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            });
-
-            getNodes.date.textContent = formattedDate;
-            getNodes.time.textContent = dateAndTime[1];
-          })();
-        })();
-
-        const displayForecast = (function () {
-          getNodes.temp.textContent = `${dataReport.temp_c}°C`;
-          getNodes.windSpeed.textContent = `${dataReport.wind_kph} kph`;
-          getNodes.windDirection.textContent = `${dataReport.wind_degree} (${dataReport.wind_dir})`;
-          getNodes.humidity.textContent = `${dataReport.humidity}%`;
-
-          switch (true) {
-            case dataReport.uv >= 0 && dataReport.uv <= 2:
-              getNodes.radiation.textContent = "Low";
-              break;
-            case dataReport.uv >= 3 && dataReport.uv <= 5:
-              getNodes.radiation.textContent = "Moderate";
-              break;
-            case dataReport.uv >= 6 && dataReport.uv <= 7:
-              getNodes.radiation.textContent = "High";
-              break;
-            case dataReport.uv >= 8 && dataReport.uv <= 10:
-              getNodes.radiation.textContent = " Very High";
-              break;
-            case dataReport.uv >= 11:
-              getNodes.radiation.textContent = "Extreme";
-              break;
-            default:
-              getNodes.radiation.textContent = "Unknown Radiation";
-              break;
-          }
-
-          dataReport.is_day === 1
-            ? (getNodes.dayStatus.textContent = "Day")
-            : (getNodes.dayStatus.textContent = "Night");
-        })();
-
-        const toggleUnits = (function () {
-          let toggleTemp = false;
-          let toggleWindSpeed = false;
-
-          getNodes.tempButton.addEventListener("click", () => {
-            if (toggleTemp) {
-              getNodes.temp.textContent = `${dataReport.temp_c}°C`;
-              toggleTemp = false;
-            } else {
-              getNodes.temp.textContent = `${dataReport.temp_f}°F`;
-              toggleTemp = true;
-            }
-          });
-
-          getNodes.windSpeedButton.addEventListener("click", () => {
-            if (toggleWindSpeed) {
-              getNodes.windSpeed.textContent = `${dataReport.wind_kph} kph`;
-              toggleWindSpeed = false;
-            } else {
-              getNodes.windSpeed.textContent = `${dataReport.wind_mph} mph`;
-              toggleWindSpeed = true;
-            }
-          });
-        })();
+        displayLocationDetails(locationData);
+        displayForecast(reportData);
+        toggleUnits(reportData);
       })();
     } else {
       console.log("Enter som!");
     }
   });
-
-  if (dataLocation !== null && dataReport !== null) {
-    return { dataLocation, dataReport };
-  }
 })();
