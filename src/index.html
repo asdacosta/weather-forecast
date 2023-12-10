@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Forecast</title>
+  </head>
+  <body>
+    <div></div>
+    <div>
+      <input
+        type="search"
+        id="search"
+        name="search"
+        maxlength="25"
+        placeholder="Enter any location..."
+      />
+      <button>Display Weather</button>
+    </div>
+    <section>
+      <h1>City</h1>
+
+      <div class="location">
+        <fieldset>
+          <legend>Location Details</legend>
+          <p class="continent">Continent:</p>
+          <p class="country">Country:</p>
+          <p class="region">Region:</p>
+          <p class="date">Date:</p>
+          <p class="time">Time:</p>
+        </fieldset>
+      </div>
+
+      <div class="Weather">
+        <fieldset>
+          <legend>Weather Forecast</legend>
+          <div class="temperature">
+            <span>Temperature:</span>
+            <button>Fahrenheit</button>
+          </div>
+          <div class="wind-speed">
+            <span>Wind Speed:</span>
+            <button>MPH</button>
+          </div>
+          <p class="wind-direction">Wind Direction:</p>
+          <p class="humidity">Humidity</p>
+          <p class="uv">Ultraviolet Radiation:</p>
+          <p class="daylight-status">Daylight Status:</p>
+        </fieldset>
+      </div>
+    </section>
+  </body>
+</html>
