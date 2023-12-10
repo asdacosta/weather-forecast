@@ -10,7 +10,7 @@ const importAllAssets = (function () {
 
 const getNodes = (function () {
   const header = document.querySelector("h1");
-  // For search..
+  // For searchLocation()
   const searchInput = document.querySelector("input");
   const searchButton = document.querySelector("body > div:nth-child(2) > button");
   // For location..
@@ -78,6 +78,21 @@ const searchLocation = (function () {
 
         dataLocation = objectLocation;
         dataReport = objectReport;
+        console.log(dataLocation);
+        console.log(dataReport);
+
+        const displayLocationDetails = (function () {
+          getNodes.header.textContent = dataLocation.name;
+
+          const continentName = dataLocation.tz_id.split("/");
+          getNodes.continent.textContent = `Continent: ${continentName[0]}`;
+          getNodes.country.textContent = `Country: ${dataLocation.country}`;
+          getNodes.region.textContent = `Region: ${dataLocation.region}`;
+
+          const dateAndTime = dataLocation.localtime.split(" ");
+          getNodes.date.textContent = `Date: ${dateAndTime[0]}`;
+          getNodes.time.textContent = `Time: ${dateAndTime[1]}`;
+        })();
       })();
     } else {
       console.log("Enter som!");
