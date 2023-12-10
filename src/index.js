@@ -49,17 +49,38 @@ const getNodes = (function () {
     windDirection,
     humidity,
     radiation,
-    radiation,
+    dayStatus,
   };
 })();
 
-const getData = (async function (location) {
+const getData = async function (location) {
   const response = await fetch(
     `http://api.weatherapi.com/v1/current.json?key=06393eb913004a98bfe70936230812&q=${location}`,
     { mode: "cors" },
   );
-
   const weatherData = await response.json();
-  const objectLocation = weatherData.location;
-  const objectReport = weatherData.current;
+
+  return weatherData;
+};
+
+const searchLocation = (function () {
+  let dataLocation = null;
+  let dataReport = null;
+
+  getNodes.searchButton.addEventListener("click", () => {
+    const location = getNodes.searchInput.value;
+
+    if (location !== "") {
+      const extractFromWeatherData = (async function () {
+        const locationData = await getData(location);
+        const objectLocation = locationData.location;
+        const objectReport = locationData.current;
+
+        dataLocation = objectLocation;
+        dataReport = objectReport;
+      })();
+    } else {
+      console.log("Enter som!");
+    }
+  });
 })();
