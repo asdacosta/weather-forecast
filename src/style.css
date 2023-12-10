@@ -26,8 +26,9 @@ body > div:first-child {
 
 body > section {
   border: 1px solid rgb(255, 255, 255);
-  width: 50rem;
-  height: 40rem;
+  width: 55rem;
+  height: 45rem;
+  font-size: 1.05rem;
   color: white;
   display: flex;
   flex-direction: column;
@@ -105,5 +106,24 @@ section > div {
 .temperature,
 .wind-speed {
   display: flex;
-  justify-content: space-between;
+}
+
+.temperature button,
+.wind-speed button {
+  margin-left: auto;
+}
+
+fieldset div {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+section fieldset span {
+  font-size: 1.1rem;
+}
+
+p {
+  background-color: rgb(44, 44, 44);
+  padding: 0.2rem;
 }
