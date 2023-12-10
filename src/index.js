@@ -83,7 +83,12 @@ const searchLocation = (function () {
           const continentName = dataLocation.tz_id.split("/");
           getNodes.continent.textContent = continentName[0];
           getNodes.country.textContent = dataLocation.country;
-          getNodes.region.textContent = dataLocation.region;
+
+          if (dataLocation.region !== "") {
+            getNodes.region.textContent = dataLocation.region;
+          } else {
+            getNodes.region.textContent = "Unrecognized 🤷";
+          }
 
           const dateAndTime = dataLocation.localtime.split(" ");
           getNodes.date.textContent = dateAndTime[0];
