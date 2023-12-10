@@ -68,7 +68,7 @@ const searchLocation = (function () {
   let dataReport = null;
 
   getNodes.searchButton.addEventListener("click", () => {
-    const location = getNodes.searchInput.value;
+    const location = getNodes.searchInput.value.trim();
 
     if (location !== "") {
       const extractFromWeatherData = (async function () {
