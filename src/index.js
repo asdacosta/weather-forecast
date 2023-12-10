@@ -30,6 +30,27 @@ const getNodes = (function () {
   const humidity = document.querySelector(".humidity");
   const radiation = document.querySelector(".uv");
   const dayStatus = document.querySelector(".daylight-status");
+
+  return {
+    header,
+    searchInput,
+    searchButton,
+    continent,
+    country,
+    region,
+    date,
+    time,
+    tempContainer,
+    tempSpan,
+    tempButton,
+    windSpeedContainer,
+    windSpeedSpan,
+    windSpeedButton,
+    windDirection,
+    humidity,
+    radiation,
+    radiation,
+  };
 })();
 
 const getData = (async function (location) {
@@ -42,9 +63,3 @@ const getData = (async function (location) {
   const objectLocation = weatherData.location;
   const objectReport = weatherData.current;
 })();
-
-// const getObjectFromWeatherData = (async function () {
-//   const object = await getData("London");
-//   const objectLocation = object.location;
-//   const objectReport = object.current;
-// })();
