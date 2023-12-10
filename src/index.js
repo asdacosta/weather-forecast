@@ -83,4 +83,8 @@ const searchLocation = (function () {
       console.log("Enter som!");
     }
   });
+
+  if (dataLocation !== null && dataReport !== null) {
+    return { dataLocation, dataReport };
+  }
 })();
