@@ -36,9 +36,9 @@ body > section {
   justify-content: space-evenly;
   background: linear-gradient(
     to right,
-    rgba(115, 115, 199, 0.6),
-    rgba(133, 197, 133, 0.6),
-    rgba(192, 154, 104, 0.6)
+    rgba(115, 115, 199, 0.5),
+    rgba(133, 197, 133, 0.5),
+    rgba(192, 154, 104, 0.5)
   );
   box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.5);
   z-index: 2;
@@ -71,7 +71,7 @@ button:hover {
 
 h1 {
   font-size: 3rem;
-  color: black;
+  color: rgb(31, 31, 31);
   font-weight: 700;
   cursor: context-menu;
 }
