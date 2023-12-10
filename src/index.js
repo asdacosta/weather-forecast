@@ -94,9 +94,12 @@ const searchLocation = (function () {
           getNodes.temp.textContent = `${dataReport.temp_c}°C`;
           getNodes.windSpeed.textContent = `${dataReport.wind_kph} kph`;
           getNodes.windDirection.textContent = `${dataReport.wind_degree} (${dataReport.wind_dir})`;
-          getNodes.humidity.textContent = dataReport.humidity;
+          getNodes.humidity.textContent = `${dataReport.humidity}%`;
           getNodes.radiation.textContent = dataReport.uv;
-          getNodes.dayStatus.textContent = dataReport.is_day;
+
+          dataReport.is_day === 1
+            ? (getNodes.dayStatus.textContent = "Day")
+            : (getNodes.dayStatus.textContent = "Night");
         })();
 
         const toggleUnits = (function () {
