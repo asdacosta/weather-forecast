@@ -92,11 +92,25 @@ const searchLocation = (function () {
 
         const displayForecast = (function () {
           getNodes.temp.textContent = `${dataReport.temp_c}°C`;
-          getNodes.windSpeed.textContent = `${dataReport.wind_kph}kph`;
+          getNodes.windSpeed.textContent = `${dataReport.wind_kph} kph`;
           getNodes.windDirection.textContent = `${dataReport.wind_degree} ${dataReport.wind_dir}`;
           getNodes.humidity.textContent = dataReport.humidity;
           getNodes.radiation.textContent = dataReport.uv;
           getNodes.dayStatus.textContent = dataReport.is_day;
+        })();
+
+        const toggleUnits = (function () {
+          let toggleTemp = false;
+
+          getNodes.tempButton.addEventListener("click", () => {
+            if (toggleTemp) {
+              getNodes.temp.textContent = `${dataReport.temp_c}°C`;
+              toggleTemp = false;
+            } else {
+              getNodes.temp.textContent = `${dataReport.temp_f}°F`;
+              toggleTemp = true;
+            }
+          });
         })();
       })();
     } else {
