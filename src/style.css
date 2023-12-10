@@ -59,10 +59,10 @@ body > div:nth-child(2) > button {
 }
 
 input:hover {
-  border: 3px solid rgb(223, 168, 98);
+  background-color: rgb(229, 213, 190);
 }
 
-body > div:nth-child(2) > button:hover {
+button:hover {
   background-color: burlywood;
   cursor: pointer;
   color: rgb(83, 83, 83);
@@ -100,4 +100,10 @@ legend {
 
 section > div {
   width: 40rem;
+}
+
+.temperature,
+.wind-speed {
+  display: flex;
+  justify-content: space-between;
 }
