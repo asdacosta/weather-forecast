@@ -14,22 +14,20 @@ const getNodes = (function () {
   const searchInput = document.querySelector("input");
   const searchButton = document.querySelector("body > div:nth-child(2) > button");
   // For location..
-  const continent = document.querySelector(".continent");
-  const country = document.querySelector(".country");
-  const region = document.querySelector(".region");
-  const date = document.querySelector(".date");
-  const time = document.querySelector(".time");
+  const continent = document.querySelector(".continent span");
+  const country = document.querySelector(".country span");
+  const region = document.querySelector(".region span");
+  const date = document.querySelector(".date span");
+  const time = document.querySelector(".time span");
   // For forecast...
-  const tempContainer = document.querySelector(".temperature");
-  const tempSpan = document.querySelector(".temperature span");
+  const temp = document.querySelector(".temperature span");
   const tempButton = document.querySelector(".temperature button");
-  const windSpeedContainer = document.querySelector(".wind-speed");
-  const windSpeedSpan = document.querySelector(".wind-speed span");
+  const windSpeed = document.querySelector(".wind-speed span");
   const windSpeedButton = document.querySelector(".wind-speed button");
-  const windDirection = document.querySelector(".wind-direction");
-  const humidity = document.querySelector(".humidity");
-  const radiation = document.querySelector(".uv");
-  const dayStatus = document.querySelector(".daylight-status");
+  const windDirection = document.querySelector(".wind-direction span");
+  const humidity = document.querySelector(".humidity span");
+  const radiation = document.querySelector(".uv span");
+  const dayStatus = document.querySelector(".daylight-status span");
 
   return {
     header,
@@ -40,11 +38,9 @@ const getNodes = (function () {
     region,
     date,
     time,
-    tempContainer,
-    tempSpan,
+    temp,
     tempButton,
-    windSpeedContainer,
-    windSpeedSpan,
+    windSpeed,
     windSpeedButton,
     windDirection,
     humidity,
@@ -85,22 +81,22 @@ const searchLocation = (function () {
           getNodes.header.textContent = dataLocation.name;
 
           const continentName = dataLocation.tz_id.split("/");
-          getNodes.continent.textContent = `Continent: ${continentName[0]}`;
-          getNodes.country.textContent = `Country: ${dataLocation.country}`;
-          getNodes.region.textContent = `Region: ${dataLocation.region}`;
+          getNodes.continent.textContent = continentName[0];
+          getNodes.country.textContent = dataLocation.country;
+          getNodes.region.textContent = dataLocation.region;
 
           const dateAndTime = dataLocation.localtime.split(" ");
-          getNodes.date.textContent = `Date: ${dateAndTime[0]}`;
-          getNodes.time.textContent = `Time: ${dateAndTime[1]}`;
+          getNodes.date.textContent = dateAndTime[0];
+          getNodes.time.textContent = dateAndTime[1];
         })();
 
         const displayForecast = (function () {
-          getNodes.tempSpan.textContent = `Temperature: ${dataReport.temp_c}°`;
-          getNodes.windSpeedSpan.textContent = `Wind Speed: ${dataReport.wind_kph} kph`;
-          getNodes.windDirection.textContent = `Wind Direction: ${dataReport.wind_degree} ${dataReport.wind_dir}`;
-          getNodes.humidity.textContent = `Humidity: ${dataReport.humidity}`;
-          getNodes.radiation.textContent = `Ultraviolet Radiation: ${dataReport.uv}`;
-          getNodes.dayStatus.textContent = `Daylight Status: ${dataReport.is_day}`;
+          getNodes.temp.textContent = `${dataReport.temp_c}°C`;
+          getNodes.windSpeed.textContent = `${dataReport.wind_kph}kph`;
+          getNodes.windDirection.textContent = `${dataReport.wind_degree} ${dataReport.wind_dir}`;
+          getNodes.humidity.textContent = dataReport.humidity;
+          getNodes.radiation.textContent = dataReport.uv;
+          getNodes.dayStatus.textContent = dataReport.is_day;
         })();
       })();
     } else {
