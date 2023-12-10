@@ -95,7 +95,27 @@ const searchLocation = (function () {
           getNodes.windSpeed.textContent = `${dataReport.wind_kph} kph`;
           getNodes.windDirection.textContent = `${dataReport.wind_degree} (${dataReport.wind_dir})`;
           getNodes.humidity.textContent = `${dataReport.humidity}%`;
-          getNodes.radiation.textContent = dataReport.uv;
+
+          switch (true) {
+            case dataReport.uv >= 0 && dataReport.uv <= 2:
+              getNodes.radiation.textContent = "Low";
+              break;
+            case dataReport.uv >= 3 && dataReport.uv <= 5:
+              getNodes.radiation.textContent = "Moderate";
+              break;
+            case dataReport.uv >= 6 && dataReport.uv <= 7:
+              getNodes.radiation.textContent = "High";
+              break;
+            case dataReport.uv >= 8 && dataReport.uv <= 10:
+              getNodes.radiation.textContent = " Very High";
+              break;
+            case dataReport.uv >= 11:
+              getNodes.radiation.textContent = "Extreme";
+              break;
+            default:
+              getNodes.radiation.textContent = "Unknown Radiation";
+              break;
+          }
 
           dataReport.is_day === 1
             ? (getNodes.dayStatus.textContent = "Day")
