@@ -101,6 +101,7 @@ const searchLocation = (function () {
 
         const toggleUnits = (function () {
           let toggleTemp = false;
+          let toggleWindSpeed = false;
 
           getNodes.tempButton.addEventListener("click", () => {
             if (toggleTemp) {
@@ -109,6 +110,16 @@ const searchLocation = (function () {
             } else {
               getNodes.temp.textContent = `${dataReport.temp_f}°F`;
               toggleTemp = true;
+            }
+          });
+
+          getNodes.windSpeedButton.addEventListener("click", () => {
+            if (toggleWindSpeed) {
+              getNodes.windSpeed.textContent = `${dataReport.wind_kph} kph`;
+              toggleWindSpeed = false;
+            } else {
+              getNodes.windSpeed.textContent = `${dataReport.wind_mph} mph`;
+              toggleWindSpeed = true;
             }
           });
         })();
