@@ -209,16 +209,15 @@ const setBackgroundImgs = function (location, report) {
   })();
 };
 
-const searchLocation = (function () {
-  getNodes.searchButton.addEventListener("click", () => {
-    const location = getNodes.searchInput.value.trim();
-
-    if (location !== "") {
-      const extractFromWeatherData = (async function () {
-        const weatherData = await getData(location);
+const getLocationForecast = (function () {
+  function runSearch(locationName) {
+    if (locationName !== "") {
+      const extractDataAndExecute = (async function () {
+        const weatherData = await getData(locationName);
         const locationData = weatherData.location;
         const reportData = weatherData.current;
 
+        console.log(weatherData);
         displayLocationDetails(locationData);
         displayForecast(reportData);
         toggleUnits(reportData);
@@ -226,6 +225,18 @@ const searchLocation = (function () {
       })();
     } else {
       console.log("Enter som!");
+    }
+  }
+
+  getNodes.searchButton.addEventListener("click", () => {
+    const locationValue = getNodes.searchInput.value.trim();
+    runSearch(locationValue);
+  });
+
+  getNodes.searchInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      const locationValue = getNodes.searchInput.value.trim();
+      runSearch(locationValue);
     }
   });
 })();
