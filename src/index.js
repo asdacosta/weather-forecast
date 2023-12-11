@@ -179,35 +179,30 @@ const setBackgroundImgs = function (location, report) {
         'url("./assets/morning.jpg") center center/cover';
     }
   })();
-
   const hotNoon = (function () {
     if (hour >= 9 && min >= 0 && hour <= 16 && min <= 59 && report.temp_c > 20) {
       getNodes.displaySection.style.background =
         'url("./assets/noon-sun.jpg") center center/cover';
     }
   })();
-
   const coldNoon = (function () {
     if (hour >= 9 && min >= 0 && hour <= 16 && min <= 59 && report.temp_c <= 20) {
       getNodes.displaySection.style.background =
         'url("./assets/cold.png") center center/cover';
     }
   })();
-
   const evening = (function () {
     if (hour >= 17 && min >= 0 && hour <= 20 && min <= 59) {
       getNodes.displaySection.style.background =
         'url("./assets/night.jpg") center center/cover';
     }
   })();
-
   const night = (function () {
     if (hour >= 21 && min >= 0 && hour <= 23 && min <= 59) {
       getNodes.displaySection.style.background =
         'url("./assets/evening.jpg") center center/cover';
     }
   })();
-
   const midnight = (function () {
     if (hour >= 0 && min >= 0 && hour <= 4 && min <= 59) {
       getNodes.displaySection.style.background =
@@ -222,7 +217,6 @@ const toggleSec = (function () {
       child.style.display = "none";
     });
   };
-
   const defaultSection = function () {
     getNodes.visibleChildren.forEach((child) => {
       child.style.display = "block";
@@ -236,15 +230,22 @@ const toggleSec = (function () {
 function runSearch(locationName) {
   if (locationName !== "") {
     const extractDataAndExecute = (async function () {
-      const weatherData = await getData(locationName);
-      const locationData = weatherData.location;
-      const reportData = weatherData.current;
+      try {
+        const weatherData = await getData(locationName);
+        const locationData = weatherData.location;
+        const reportData = weatherData.current;
 
-      toggleSec.defaultSection();
-      displayLocationDetails(locationData);
-      displayForecast(reportData);
-      toggleUnits(reportData);
-      setBackgroundImgs(locationData, reportData);
+        toggleSec.defaultSection();
+        displayLocationDetails(locationData);
+        displayForecast(reportData);
+        toggleUnits(reportData);
+        setBackgroundImgs(locationData, reportData);
+      } catch (error) {
+        toggleSec.clearSection();
+        getNodes.hiddenHeader.textContent = "Kindly input a valid location :(";
+        getNodes.displaySection.style.backgroundImage =
+          "linear-gradient(to right, rgba(55, 55, 109, 0.7), rgba(52, 109, 52, 0.7), rgba(133, 100, 58, 0.7))";
+      }
     })();
   } else {
     console.log("Enter som!");
@@ -265,7 +266,7 @@ const forecast = (function () {
   });
 })();
 
-const giveFeedback = (function () {
+const giveFeedbackAtPageLoad = (function () {
   toggleSec.clearSection();
   getNodes.hiddenHeader.textContent = "Search any spot globally!";
 })();
