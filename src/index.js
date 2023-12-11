@@ -216,6 +216,23 @@ const setBackgroundImgs = function (location, report) {
   })();
 };
 
+const toggleSec = (function () {
+  const clearSection = function () {
+    getNodes.visibleChildren.forEach((child) => {
+      child.style.display = "none";
+    });
+  };
+
+  const defaultSection = function () {
+    getNodes.visibleChildren.forEach((child) => {
+      child.style.display = "block";
+      getNodes.hiddenHeader.textContent = "";
+    });
+  };
+
+  return { clearSection, defaultSection };
+})();
+
 const getLocationForecast = (function () {
   function runSearch(locationName) {
     if (locationName !== "") {
@@ -224,7 +241,7 @@ const getLocationForecast = (function () {
         const locationData = weatherData.location;
         const reportData = weatherData.current;
 
-        console.log(weatherData);
+        toggleSec.defaultSection();
         displayLocationDetails(locationData);
         displayForecast(reportData);
         toggleUnits(reportData);
@@ -246,22 +263,6 @@ const getLocationForecast = (function () {
       runSearch(locationValue);
     }
   });
-})();
-
-const toggleSec = (function () {
-  const clearSection = function () {
-    getNodes.visibleChildren.forEach((child) => {
-      child.style.display = "none";
-    });
-  };
-
-  const defaultSection = function () {
-    getNodes.visibleChildren.forEach((child) => {
-      child.style.display = "block";
-    });
-  };
-
-  return { clearSection, defaultSection };
 })();
 
 const giveFeedback = (function () {
