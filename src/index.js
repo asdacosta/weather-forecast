@@ -32,9 +32,10 @@ const getNodes = (function () {
   // For setBackgroundImgs()
   const displaySection = document.querySelector("body > section");
   // For clearSection(), defaultSection()
+  const headingContainer = document.querySelector(".heading");
   const locationContainer = document.querySelector(".location-details");
   const forecastContainer = document.querySelector(".weather-forecast");
-  const visibleChildren = [header, locationContainer, forecastContainer];
+  const visibleChildren = [headingContainer, locationContainer, forecastContainer];
   const hiddenHeader = document.querySelector("h2");
   // For displayLoading()
   const bouncingBall = document.querySelector(".load");
@@ -148,11 +149,12 @@ const toggleUnits = function (data) {
 
   const toggleTempUnit = (function () {
     getNodes.tempButton.addEventListener("click", () => {
-      console.log("1");
       if (toggleTemp) {
+        getNodes.tempButton.textContent = "Fahrenheit";
         getNodes.temp.textContent = `${data.temp_c}°C`;
         toggleTemp = false;
       } else {
+        getNodes.tempButton.textContent = "Celsius";
         getNodes.temp.textContent = `${data.temp_f}°F`;
         toggleTemp = true;
       }
@@ -162,9 +164,11 @@ const toggleUnits = function (data) {
   const toggleWindSpeedUnit = (function () {
     getNodes.windSpeedButton.addEventListener("click", () => {
       if (toggleWindSpeed) {
+        getNodes.windSpeedButton.textContent = "mp/h";
         getNodes.windSpeed.textContent = `${data.wind_kph} kp/h`;
         toggleWindSpeed = false;
       } else {
+        getNodes.windSpeedButton.textContent = "kp/h";
         getNodes.windSpeed.textContent = `${data.wind_mph} mp/h`;
         toggleWindSpeed = true;
       }
@@ -224,7 +228,11 @@ const toggleSec = (function () {
   };
   const defaultSection = function () {
     getNodes.visibleChildren.forEach((child) => {
-      child.style.display = "block";
+      if (child.className === "heading") {
+        child.style.display = "flex";
+      } else {
+        child.style.display = "block";
+      }
       getNodes.hiddenHeader.textContent = "";
     });
   };
