@@ -21,14 +21,14 @@ const getNodes = (function () {
   const date = document.querySelector(".date span");
   const time = document.querySelector(".time span");
   // For displayForeCast()
-  const temp = document.querySelector(".temperature span");
-  const tempButton = document.querySelector(".temperature button");
-  const windSpeed = document.querySelector(".wind-speed span");
-  const windSpeedButton = document.querySelector(".wind-speed button");
-  const windDirection = document.querySelector(".wind-direction span");
-  const humidity = document.querySelector(".humidity span");
-  const radiation = document.querySelector(".uv span");
-  const dayStatus = document.querySelector(".daylight-status span");
+  const temp = document.querySelector(".temperature span:last-child");
+  const tempButton = document.querySelector(".heading > div > button:first-child");
+  const windSpeed = document.querySelector(".wind-speed span:last-child");
+  const windSpeedButton = document.querySelector(".heading > div > button:last-child");
+  const windDirection = document.querySelector(".wind-direction span:last-child");
+  const humidity = document.querySelector(".humidity span:last-child");
+  const radiation = document.querySelector(".uv span:last-child");
+  const dayStatus = document.querySelector(".daylight-status span:last-child");
   // For setBackgroundImgs()
   const displaySection = document.querySelector("body > section");
   // For clearSection(), defaultSection()
@@ -107,7 +107,7 @@ const displayLocationDetails = function (data) {
 const displayForecast = function (data) {
   const setInitialForecasts = (function () {
     getNodes.temp.textContent = `${data.temp_c}°C`;
-    getNodes.windSpeed.textContent = `${data.wind_kph} kph`;
+    getNodes.windSpeed.textContent = `${data.wind_kph} kp/h`;
     getNodes.windDirection.textContent = `${data.wind_degree} (${data.wind_dir})`;
     getNodes.humidity.textContent = `${data.humidity}%`;
   })();
@@ -148,6 +148,7 @@ const toggleUnits = function (data) {
 
   const toggleTempUnit = (function () {
     getNodes.tempButton.addEventListener("click", () => {
+      console.log("1");
       if (toggleTemp) {
         getNodes.temp.textContent = `${data.temp_c}°C`;
         toggleTemp = false;
@@ -161,10 +162,10 @@ const toggleUnits = function (data) {
   const toggleWindSpeedUnit = (function () {
     getNodes.windSpeedButton.addEventListener("click", () => {
       if (toggleWindSpeed) {
-        getNodes.windSpeed.textContent = `${data.wind_kph} kph`;
+        getNodes.windSpeed.textContent = `${data.wind_kph} kp/h`;
         toggleWindSpeed = false;
       } else {
-        getNodes.windSpeed.textContent = `${data.wind_mph} mph`;
+        getNodes.windSpeed.textContent = `${data.wind_mph} mp/h`;
         toggleWindSpeed = true;
       }
     });
@@ -237,6 +238,7 @@ function runSearch(locationName) {
     const extractDataAndExecute = (async function () {
       try {
         const weatherData = await getData(locationName);
+        console.log(weatherData);
         await new Promise((resolve) => setTimeout(resolve, 2000));
         load.removeLoading();
         const locationData = weatherData.location;
@@ -248,6 +250,7 @@ function runSearch(locationName) {
         toggleUnits(reportData);
         setBackgroundImgs(locationData, reportData);
       } catch (error) {
+        console.log(error);
         toggleSec.clearSection();
         getNodes.hiddenHeader.textContent = "Invalid spot :(";
         getNodes.displaySection.style.backgroundImage =
@@ -273,10 +276,10 @@ const forecast = (function () {
   });
 })();
 
-const giveFeedbackAtPageLoad = (function () {
-  toggleSec.clearSection();
-  getNodes.hiddenHeader.textContent = "Search any spot globally!";
-})();
+// const giveFeedbackAtPageLoad = (function () {
+//   toggleSec.clearSection();
+//   getNodes.hiddenHeader.textContent = "Search any spot globally!";
+// })();
 
 const load = (function () {
   const showLoading = function () {
