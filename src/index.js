@@ -30,6 +30,11 @@ const getNodes = (function () {
   const dayStatus = document.querySelector(".daylight-status span");
   // For setBackgroundImgs()
   const displaySection = document.querySelector("body > section");
+  // For clearSection(), defaultSection()
+  const locationContainer = document.querySelector(".location-details");
+  const forecastContainer = document.querySelector(".weather-forecast");
+  const visibleChildren = [header, locationContainer, forecastContainer];
+  const hiddenHeader = document.querySelector("h2");
 
   return {
     header,
@@ -49,6 +54,8 @@ const getNodes = (function () {
     radiation,
     dayStatus,
     displaySection,
+    visibleChildren,
+    hiddenHeader,
   };
 })();
 
@@ -239,4 +246,25 @@ const getLocationForecast = (function () {
       runSearch(locationValue);
     }
   });
+})();
+
+const toggleSec = (function () {
+  const clearSection = function () {
+    getNodes.visibleChildren.forEach((child) => {
+      child.style.display = "none";
+    });
+  };
+
+  const defaultSection = function () {
+    getNodes.visibleChildren.forEach((child) => {
+      child.style.display = "block";
+    });
+  };
+
+  return { clearSection, defaultSection };
+})();
+
+const giveFeedback = (function () {
+  toggleSec.clearSection();
+  getNodes.hiddenHeader.textContent = "Search any spot globally!";
 })();
