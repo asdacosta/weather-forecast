@@ -160,6 +160,55 @@ const toggleUnits = function (data) {
   })();
 };
 
+const setBackgroundImgs = function (location, report) {
+  const dateAndTime = location.localtime.split(" ");
+  const [hourStr, minStr] = dateAndTime[1].split(":");
+  const hour = parseInt(hourStr, 10);
+  const min = parseInt(minStr, 10);
+
+  const earlyMorning = (function () {
+    if (hour >= 5 && min >= 0 && hour <= 8 && min <= 59) {
+      getNodes.displaySection.style.background =
+        'url("./assets/morning.jpg") center center/cover';
+    }
+  })();
+
+  const hotNoon = (function () {
+    if (hour >= 9 && min >= 0 && hour <= 16 && min <= 59 && report.temp_c > 20) {
+      getNodes.displaySection.style.background =
+        'url("./assets/noon-sun.jpg") center center/cover';
+    }
+  })();
+
+  const coldNoon = (function () {
+    if (hour >= 9 && min >= 0 && hour <= 16 && min <= 59 && report.temp_c <= 20) {
+      getNodes.displaySection.style.background =
+        'url("./assets/cold.png") center center/cover';
+    }
+  })();
+
+  const evening = (function () {
+    if (hour >= 17 && min >= 0 && hour <= 20 && min <= 59) {
+      getNodes.displaySection.style.background =
+        'url("./assets/night.jpg") center center/cover';
+    }
+  })();
+
+  const night = (function () {
+    if (hour >= 21 && min >= 0 && hour <= 23 && min <= 59) {
+      getNodes.displaySection.style.background =
+        'url("./assets/evening.jpg") center center/cover';
+    }
+  })();
+
+  const midnight = (function () {
+    if (hour >= 0 && min >= 0 && hour <= 4 && min <= 59) {
+      getNodes.displaySection.style.background =
+        'url("./assets/midnight.jpg") center center/cover';
+    }
+  })();
+};
+
 const searchLocation = (function () {
   getNodes.searchButton.addEventListener("click", () => {
     const location = getNodes.searchInput.value.trim();
@@ -173,68 +222,7 @@ const searchLocation = (function () {
         displayLocationDetails(locationData);
         displayForecast(reportData);
         toggleUnits(reportData);
-
-        console.log(reportData);
-        const setBackgroundImgs = (function () {
-          const dateAndTime = locationData.localtime.split(" ");
-          const [hourStr, minStr] = dateAndTime[1].split(":");
-          const hour = parseInt(hourStr, 10);
-          const min = parseInt(minStr, 10);
-
-          const earlyMorning = (function () {
-            if (hour >= 5 && min >= 0 && hour <= 8 && min <= 59) {
-              getNodes.displaySection.style.background =
-                'url("./assets/morning.jpg") center center/cover';
-            }
-          })();
-
-          const hotNoon = (function () {
-            if (
-              hour >= 9 &&
-              min >= 0 &&
-              hour <= 16 &&
-              min <= 59 &&
-              reportData.temp_c > 20
-            ) {
-              getNodes.displaySection.style.background =
-                'url("./assets/noon-sun.jpg") center center/cover';
-            }
-          })();
-
-          const coldNoon = (function () {
-            if (
-              hour >= 9 &&
-              min >= 0 &&
-              hour <= 16 &&
-              min <= 59 &&
-              reportData.temp_c <= 20
-            ) {
-              getNodes.displaySection.style.background =
-                'url("./assets/cold.png") center center/cover';
-            }
-          })();
-
-          const evening = (function () {
-            if (hour >= 17 && min >= 0 && hour <= 20 && min <= 59) {
-              getNodes.displaySection.style.background =
-                'url("./assets/night.jpg") center center/cover';
-            }
-          })();
-
-          const night = (function () {
-            if (hour >= 21 && min >= 0 && hour <= 23 && min <= 59) {
-              getNodes.displaySection.style.background =
-                'url("./assets/evening.jpg") center center/cover';
-            }
-          })();
-
-          const midnight = (function () {
-            if (hour >= 0 && min >= 0 && hour <= 4 && min <= 59) {
-              getNodes.displaySection.style.background =
-                'url("./assets/midnight.jpg") center center/cover';
-            }
-          })();
-        })();
+        setBackgroundImgs(locationData, reportData);
       })();
     } else {
       console.log("Enter som!");
