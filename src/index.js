@@ -1,3 +1,4 @@
+// import { resolve } from "path";
 import "./reset.css";
 import "./style.css";
 
@@ -236,6 +237,7 @@ function runSearch(locationName) {
     const extractDataAndExecute = (async function () {
       try {
         const weatherData = await getData(locationName);
+        await new Promise((resolve) => setTimeout(resolve, 2000));
         load.removeLoading();
         const locationData = weatherData.location;
         const reportData = weatherData.current;
