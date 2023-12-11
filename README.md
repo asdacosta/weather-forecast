@@ -17,7 +17,7 @@
     <img src="https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white" alt="ESLint badge">
     <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=black" alt="Prettier badge">
     <img src="https://img.shields.io/badge/Babel-F7B93E?style=for-the-badge&logo=babel&logoColor=black" alt="Babel badge">
-    <!-- <h4><a href="https://asdacosta.github.io/###/">Live Preview</a></h4> -->
+    <h4><a href="https://asdacosta.github.io/weather-forecast/">Live Preview</a></h4>
 </div>
 
 **Demo:**
@@ -49,7 +49,15 @@ Builds a weather forecast website using APIs.
 <details>
 <summary>Features</summary>
 
-* ###
+* Search weather details for any location.
+* Sets background that aligns with the Time and Temperature of location.
+* Displays the root of the location(Continent, Country, Region).
+* Displays Date and Time of location at time of forecast.
+* Toggle Temperature unit between Fahrenheit / Celsius.
+* Toggle Wind Speed unit between KPH / MPH.
+* Displays forecast details in human-readable format.
+* Displays a smooth loading animation whiles search is on going.
+
 
 </details>
 
