@@ -13,13 +13,13 @@ const getNodes = (function () {
   // For searchLocation()
   const searchInput = document.querySelector("input");
   const searchButton = document.querySelector("body > div:nth-child(2) > button");
-  // For location..
+  // For displayLocationDetails()
   const continent = document.querySelector(".continent span");
   const country = document.querySelector(".country span");
   const region = document.querySelector(".region span");
   const date = document.querySelector(".date span");
   const time = document.querySelector(".time span");
-  // For forecast...
+  // For displayForeCast()
   const temp = document.querySelector(".temperature span");
   const tempButton = document.querySelector(".temperature button");
   const windSpeed = document.querySelector(".wind-speed span");
@@ -35,6 +35,8 @@ const getNodes = (function () {
   const forecastContainer = document.querySelector(".weather-forecast");
   const visibleChildren = [header, locationContainer, forecastContainer];
   const hiddenHeader = document.querySelector("h2");
+  // For displayLoading()
+  const bouncingBall = document.querySelector(".load");
 
   return {
     header,
@@ -56,6 +58,7 @@ const getNodes = (function () {
     displaySection,
     visibleChildren,
     hiddenHeader,
+    bouncingBall,
   };
 })();
 
@@ -229,9 +232,11 @@ const toggleSec = (function () {
 
 function runSearch(locationName) {
   if (locationName !== "") {
+    load.showLoading();
     const extractDataAndExecute = (async function () {
       try {
         const weatherData = await getData(locationName);
+        load.removeLoading();
         const locationData = weatherData.location;
         const reportData = weatherData.current;
 
@@ -269,4 +274,21 @@ const forecast = (function () {
 const giveFeedbackAtPageLoad = (function () {
   toggleSec.clearSection();
   getNodes.hiddenHeader.textContent = "Search any spot globally!";
+})();
+
+const load = (function () {
+  const showLoading = function () {
+    toggleSec.clearSection();
+    getNodes.displaySection.style.backgroundImage =
+      "linear-gradient(to right, rgba(55, 55, 109, 0.7), rgba(52, 109, 52, 0.7), rgba(133, 100, 58, 0.7))";
+    getNodes.hiddenHeader.textContent = "";
+    getNodes.bouncingBall.style.display = "block";
+  };
+
+  const removeLoading = function () {
+    toggleSec.defaultSection();
+    getNodes.bouncingBall.style.display = "none";
+  };
+
+  return { showLoading, removeLoading };
 })();
