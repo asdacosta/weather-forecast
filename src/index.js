@@ -242,7 +242,7 @@ function runSearch(locationName) {
         setBackgroundImgs(locationData, reportData);
       } catch (error) {
         toggleSec.clearSection();
-        getNodes.hiddenHeader.textContent = "Kindly input a valid location :(";
+        getNodes.hiddenHeader.textContent = "Invalid spot :(";
         getNodes.displaySection.style.backgroundImage =
           "linear-gradient(to right, rgba(55, 55, 109, 0.7), rgba(52, 109, 52, 0.7), rgba(133, 100, 58, 0.7))";
       }
