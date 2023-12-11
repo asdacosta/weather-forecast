@@ -95,7 +95,14 @@ Developers, users, recruiters.
 
 | File | Description |
 | - | - |
-|`src/assets/###`| Photo created by ### on [###]().|
+|`src/assets/morning.jpg`| Photo created by Jonatan Pie on [Unsplash](https://unsplash.com/).|
+|`src/assets/evening.jpg`| Photo created by Andre Benz on [Unsplash](https://unsplash.com/).|
+|`src/assets/night.jpg`| Photo created by Pexels on [Pixabay](https://pixabay.com/).|
+|`src/assets/midnight.jpg`| Photo created by Neale LaSalle on [Pexels](https://www.pexels.com/).|
+
+
+
+
 
 
 </details>
