@@ -233,25 +233,25 @@ const toggleSec = (function () {
   return { clearSection, defaultSection };
 })();
 
-const getLocationForecast = (function () {
-  function runSearch(locationName) {
-    if (locationName !== "") {
-      const extractDataAndExecute = (async function () {
-        const weatherData = await getData(locationName);
-        const locationData = weatherData.location;
-        const reportData = weatherData.current;
+function runSearch(locationName) {
+  if (locationName !== "") {
+    const extractDataAndExecute = (async function () {
+      const weatherData = await getData(locationName);
+      const locationData = weatherData.location;
+      const reportData = weatherData.current;
 
-        toggleSec.defaultSection();
-        displayLocationDetails(locationData);
-        displayForecast(reportData);
-        toggleUnits(reportData);
-        setBackgroundImgs(locationData, reportData);
-      })();
-    } else {
-      console.log("Enter som!");
-    }
+      toggleSec.defaultSection();
+      displayLocationDetails(locationData);
+      displayForecast(reportData);
+      toggleUnits(reportData);
+      setBackgroundImgs(locationData, reportData);
+    })();
+  } else {
+    console.log("Enter som!");
   }
+}
 
+const forecast = (function () {
   getNodes.searchButton.addEventListener("click", () => {
     const locationValue = getNodes.searchInput.value.trim();
     runSearch(locationValue);
