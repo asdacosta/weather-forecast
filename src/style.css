@@ -36,9 +36,9 @@ body > section {
   justify-content: space-evenly;
   background: linear-gradient(
     to right,
-    rgba(90, 90, 160, 0.5),
-    rgba(98, 172, 98, 0.5),
-    rgba(172, 134, 85, 0.5)
+    rgba(55, 55, 109, 0.7),
+    rgba(52, 109, 52, 0.7),
+    rgba(133, 100, 58, 0.7)
   );
   box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.5);
   z-index: 2;
@@ -75,6 +75,13 @@ h1 {
   font-weight: 700;
   cursor: context-menu;
   background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 1rem;
+  padding: 0 0.5rem;
+}
+
+h2 {
+  font-size: 2.2rem;
+  background-color: rgba(0, 0, 0, 0.6);
   border-radius: 1rem;
   padding: 0 0.5rem;
 }
@@ -129,7 +136,26 @@ section fieldset span {
   font-size: 1.1rem;
 }
 
-p {
+fieldset p {
   background-color: rgb(0, 0, 0);
   padding: 0.2rem;
+}
+
+.load {
+  display: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: rgb(228, 171, 92);
+  border-radius: 50%;
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
