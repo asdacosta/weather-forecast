@@ -1,5 +1,6 @@
 body * {
   letter-spacing: 0.1rem;
+  /* border: 2px solid teal; */
 }
 
 body {
@@ -88,7 +89,7 @@ h2 {
 
 fieldset {
   border: 1px solid rgb(255, 255, 255);
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -99,7 +100,7 @@ fieldset {
 
 fieldset:hover {
   transform: scale(1.05);
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 legend {
@@ -126,10 +127,42 @@ section > div {
   margin-left: auto;
 }
 
-fieldset div {
+.location-details div {
   display: flex;
   gap: 1rem;
   align-items: center;
+}
+
+.weather-div {
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.weather-div > div {
+  display: grid;
+  grid-template: 1fr 2fr / 1fr 3.5fr;
+  /* border: 2px solid tan; */
+}
+
+.weather-div > div > div {
+  grid-row: 1 / -1;
+  /* border: 3px solid red; */
+}
+
+.weather-div > div > span {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.weather-div > div > span:last-child {
+  font-size: 1.5rem;
+}
+
+svg {
+  fill: white;
+  width: 100%;
+  height: 100%;
 }
 
 section fieldset span {
