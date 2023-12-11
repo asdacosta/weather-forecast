@@ -283,12 +283,13 @@ const load = (function () {
     toggleSec.clearSection();
     getNodes.displaySection.style.backgroundImage =
       "linear-gradient(to right, rgba(55, 55, 109, 0.7), rgba(52, 109, 52, 0.7), rgba(133, 100, 58, 0.7))";
-    getNodes.hiddenHeader.textContent = "";
+    getNodes.hiddenHeader.style.display = "none";
     getNodes.bouncingBall.style.display = "block";
   };
 
   const removeLoading = function () {
     toggleSec.defaultSection();
+    getNodes.hiddenHeader.style.display = "block";
     getNodes.bouncingBall.style.display = "none";
   };
 
