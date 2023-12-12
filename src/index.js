@@ -13,7 +13,7 @@ const getNodes = (function () {
   const header = document.querySelector("h1");
   // For searchLocation()
   const searchInput = document.querySelector("input");
-  const searchButton = document.querySelector("body > div:nth-child(2) > button");
+  const searchButton = document.querySelector(".search-sec > button");
   // For displayLocationDetails()
   const continent = document.querySelector(".continent span");
   const country = document.querySelector(".country span");
@@ -30,7 +30,7 @@ const getNodes = (function () {
   const radiation = document.querySelector(".uv span:last-child");
   const dayStatus = document.querySelector(".daylight-status span:last-child");
   // For setBackgroundImgs()
-  const displaySection = document.querySelector("body > section");
+  const displaySection = document.querySelector(".main-sec");
   // For clearSection(), defaultSection()
   const headingContainer = document.querySelector(".heading");
   const locationContainer = document.querySelector(".location-details");
@@ -284,10 +284,10 @@ const forecast = (function () {
   });
 })();
 
-// const giveFeedbackAtPageLoad = (function () {
-//   toggleSec.clearSection();
-//   getNodes.hiddenHeader.textContent = "Search any spot globally!";
-// })();
+const giveFeedbackAtPageLoad = (function () {
+  toggleSec.clearSection();
+  getNodes.hiddenHeader.textContent = "Search any spot globally!";
+})();
 
 const load = (function () {
   const showLoading = function () {
