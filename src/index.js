@@ -515,7 +515,7 @@ function runSearch(locationName) {
         toggleSec.clearSection();
         getNodes.hiddenHeader.textContent = "Invalid spot :(";
         getNodes.displaySection.style.backgroundImage =
-          "linear-gradient(to right, rgba(55, 55, 109, 0.7), rgba(52, 109, 52, 0.7), rgba(133, 100, 58, 0.7))";
+          "linear-gradient(to right, rgba(55, 55, 109, 0.4), rgba(52, 109, 52, 0.4), rgba(133, 100, 58, 0.4))";
       }
     })();
   } else {
@@ -546,7 +546,7 @@ const load = (function () {
   const showLoading = function () {
     toggleSec.clearSection();
     getNodes.displaySection.style.backgroundImage =
-      "linear-gradient(to right, rgba(55, 55, 109, 0.7), rgba(52, 109, 52, 0.7), rgba(133, 100, 58, 0.7))";
+      "linear-gradient(to right, rgba(55, 55, 109, 0.4), rgba(52, 109, 52, 0.4), rgba(133, 100, 58, 0.4))";
     getNodes.hiddenHeader.style.display = "none";
     getNodes.bouncingBall.style.display = "block";
   };
