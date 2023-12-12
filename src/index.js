@@ -22,9 +22,9 @@ const getNodes = (function () {
   const time = document.querySelector(".time span");
   // For displayForeCast()
   const temp = document.querySelector(".temperature span:last-child");
-  const tempButton = document.querySelector(".heading > div > button:first-child");
+  const tempButton = document.querySelector(".search-sec > div > button:first-child");
   const windSpeed = document.querySelector(".wind-speed span:last-child");
-  const windSpeedButton = document.querySelector(".heading > div > button:last-child");
+  const windSpeedButton = document.querySelector(".search-sec > div > button:last-child");
   const windDirection = document.querySelector(".wind-direction span:last-child");
   const humidity = document.querySelector(".humidity span:last-child");
   const radiation = document.querySelector(".uv span:last-child");
@@ -32,10 +32,9 @@ const getNodes = (function () {
   // For setBackgroundImgs()
   const displaySection = document.querySelector(".main-sec");
   // For clearSection(), defaultSection()
-  const headingContainer = document.querySelector(".heading");
   const locationContainer = document.querySelector(".location-details");
   const forecastContainer = document.querySelector(".weather-forecast");
-  const visibleChildren = [headingContainer, locationContainer, forecastContainer];
+  const visibleChildren = [header, locationContainer, forecastContainer];
   const hiddenHeader = document.querySelector("h2");
   // For displayLoading()
   const bouncingBall = document.querySelector(".load");
@@ -278,7 +277,7 @@ const toggleSec = (function () {
       } else {
         child.style.display = "block";
       }
-      getNodes.hiddenHeader.textContent = "";
+      getNodes.hiddenHeader.style.display = "none";
     });
   };
 
