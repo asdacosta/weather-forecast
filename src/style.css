@@ -5,7 +5,7 @@ body * {
 
 body {
   display: grid;
-  grid-template: 1fr 8fr / 1fr 4fr 1fr;
+  grid-template: 1fr 8fr / 1fr 4fr 1.2fr;
   /* align-items: center; */
   gap: 2rem;
   padding: 2rem;
@@ -31,12 +31,11 @@ body > div:first-child {
   flex-direction: column;
   justify-content: space-evenly;
   color: white;
-  padding: 3rem;
+  padding: 2.5rem;
   width: 100%;
   height: 100%;
   grid-row: 1 / -1;
   grid-column: 1 / span 1;
-  /* border: 2px solid tomato; */
   z-index: 2;
 }
 
@@ -104,8 +103,13 @@ body > div:first-child {
 }
 
 .last-sec {
+  align-self: flex-start;
   width: 100%;
-  height: 100%;
+  height: 40rem;
+  background-image: url(./assets/rain.jpg);
+  background-size: cover;
+  background-position: center center;
+  border-radius: 1.5rem;
   grid-row: 2 / -1;
   grid-column: 3 / -1;
   /* border: 2px solid tomato; */
@@ -142,7 +146,7 @@ button:hover {
 .heading > div {
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
+  gap: 0.2rem;
 }
 
 .heading button {
@@ -152,7 +156,7 @@ button:hover {
 
 h1 {
   align-self: center;
-  font-size: 2.2rem;
+  font-size: 2rem;
   color: rgb(31, 31, 31);
   font-weight: 700;
   cursor: context-menu;
@@ -230,24 +234,27 @@ h2 {
 
 .weather-div > div > div {
   grid-row: 1 / -1;
+  width: 3rem;
+  align-self: center;
+  justify-self: flex-end;
 }
 
 .weather-div > div > span {
   font-size: 0.9rem;
-  font-weight: 600;
 }
 
 .weather-div > div > span:last-child {
   font-size: 1.5rem;
+  font-weight: 600;
 }
 
 svg {
   fill: white;
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
 }
 
-.main-sec fieldset span {
+.location-details fieldset span {
   font-size: 1.1rem;
 }
 
