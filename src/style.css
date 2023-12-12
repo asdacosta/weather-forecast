@@ -50,11 +50,13 @@ body > div:first-child {
   font-size: 0.8rem;
   border: 1px solid white;
   border-radius: 1rem;
+  margin: auto;
   padding: 0.1rem 0.3rem;
 }
 
 .first-sec fieldset div {
   display: flex;
+  justify-content: center;
   gap: 0.5rem;
 }
 
@@ -154,7 +156,7 @@ h1 {
   color: rgb(31, 31, 31);
   font-weight: 700;
   cursor: context-menu;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.7);
   border-radius: 1rem;
   padding: 0 0.5rem;
 }
