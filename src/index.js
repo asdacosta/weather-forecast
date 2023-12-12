@@ -54,7 +54,7 @@ const getNodes = (function () {
     sixthDayDate,
     lastDayDate,
   ];
-  // For setFutureTemps()
+  // For setFutureTempsC() setFutureTempsF
   const nextDayTemp = document.querySelector(".next-date span");
   const thirdDayTemp = document.querySelector(".third-date span");
   const fourthDayTemp = document.querySelector(".fourth-date span");
@@ -175,7 +175,7 @@ const displayForecast = function (data) {
   })();
 };
 
-const toggleUnits = function (data) {
+const toggleUnits = function (data, futureData) {
   let toggleTemp = false;
   let toggleWindSpeed = false;
 
@@ -184,10 +184,12 @@ const toggleUnits = function (data) {
       if (toggleTemp) {
         getNodes.tempButton.textContent = "Fahrenheit";
         getNodes.temp.textContent = `${data.temp_c}°C`;
+        forecastFuture.setFutureTempsC(futureData);
         toggleTemp = false;
       } else {
         getNodes.tempButton.textContent = "Celsius";
         getNodes.temp.textContent = `${data.temp_f}°F`;
+        forecastFuture.setFutureTempsF(futureData);
         toggleTemp = true;
       }
     });
@@ -308,7 +310,7 @@ const forecastFuture = (function () {
     });
   };
 
-  const setFutureTemps = function (data) {
+  const setFutureTempsC = function (data) {
     function displayTemp(num, tempLabel) {
       tempLabel.innerHTML = `${data[num].day.mintemp_c}°C ⤵<br> ${data[num].day.maxtemp_c}°C`;
     }
@@ -337,7 +339,36 @@ const forecastFuture = (function () {
     });
   };
 
-  return { setFutureDates, setFutureTemps };
+  const setFutureTempsF = function (data) {
+    function displayTemp(num, tempLabel) {
+      tempLabel.innerHTML = `${data[num].day.mintemp_f}°F ⤵<br> ${data[num].day.maxtemp_f}°F`;
+    }
+
+    getNodes.futureTemps.forEach((temp, index) => {
+      switch (index) {
+        case 0:
+          displayTemp(1, temp);
+          break;
+        case 1:
+          displayTemp(2, temp);
+          break;
+        case 2:
+          displayTemp(3, temp);
+          break;
+        case 3:
+          displayTemp(4, temp);
+          break;
+        case 4:
+          displayTemp(5, temp);
+          break;
+        case 5:
+          displayTemp(6, temp);
+          break;
+      }
+    });
+  };
+
+  return { setFutureDates, setFutureTempsC, setFutureTempsF };
 })();
 
 function runSearch(locationName) {
@@ -356,10 +387,10 @@ function runSearch(locationName) {
         toggleSec.defaultSection();
         displayLocationDetails(locationData);
         displayForecast(reportData);
-        toggleUnits(reportData);
+        toggleUnits(reportData, futureData);
         setBackgroundImgs(locationData, reportData);
         forecastFuture.setFutureDates(futureData);
-        forecastFuture.setFutureTemps(futureData);
+        forecastFuture.setFutureTempsC(futureData);
       } catch (error) {
         console.log(error);
         toggleSec.clearSection();
