@@ -13,7 +13,7 @@ const getNodes = (function () {
   const header = document.querySelector("h1");
   // For searchLocation()
   const searchInput = document.querySelector("input");
-  const searchButton = document.querySelector(".search-sec > button");
+  const searchButton = document.querySelector(".search-sec button");
   // For displayLocationDetails()
   const continent = document.querySelector(".continent span");
   const country = document.querySelector(".country span");
@@ -22,9 +22,9 @@ const getNodes = (function () {
   const time = document.querySelector(".time span");
   // For displayForeCast()
   const temp = document.querySelector(".temperature span:last-child");
-  const tempButton = document.querySelector(".search-sec > div > button:first-child");
+  const tempButton = document.querySelector(".buttons-sec button:nth-child(2)");
   const windSpeed = document.querySelector(".wind-speed span:last-child");
-  const windSpeedButton = document.querySelector(".search-sec > div > button:last-child");
+  const windSpeedButton = document.querySelector(".buttons-sec button:nth-child(3)");
   const windDirection = document.querySelector(".wind-direction span:last-child");
   const humidity = document.querySelector(".humidity span:last-child");
   const radiation = document.querySelector(".uv span:last-child");
@@ -192,12 +192,12 @@ const toggleUnits = function (data, futureData) {
   const toggleTempUnit = (function () {
     getNodes.tempButton.addEventListener("click", () => {
       if (toggleTemp) {
-        getNodes.tempButton.textContent = "Fahrenheit";
+        getNodes.tempButton.textContent = "°F";
         getNodes.temp.textContent = `${data.temp_c}°C`;
         forecastFuture.setFutureTempsC(futureData);
         toggleTemp = false;
       } else {
-        getNodes.tempButton.textContent = "Celsius";
+        getNodes.tempButton.textContent = "°C";
         getNodes.temp.textContent = `${data.temp_f}°F`;
         forecastFuture.setFutureTempsF(futureData);
         toggleTemp = true;
