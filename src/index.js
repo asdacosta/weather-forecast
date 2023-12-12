@@ -69,6 +69,12 @@ const getNodes = (function () {
     sixthDayTemp,
     lastDayTemp,
   ];
+  // For displayRainForecast()
+  const rainDate = document.querySelector(".last-sec legend");
+  const clouds = document.querySelector(".clouds");
+  const chanceOfRain = document.querySelector(".chance");
+  const precipitation = document.querySelector(".prec");
+  const rainForecastNodes = [clouds, chanceOfRain, precipitation];
 
   return {
     header,
@@ -93,6 +99,8 @@ const getNodes = (function () {
     bouncingBall,
     futureDates,
     futureTemps,
+    rainDate,
+    rainForecastNodes,
   };
 })();
 
@@ -371,6 +379,22 @@ const forecastFuture = (function () {
   return { setFutureDates, setFutureTempsC, setFutureTempsF };
 })();
 
+const displayRainForecast = function (data) {
+  getNodes.rainForecastNodes.forEach((node, index) => {
+    switch (index) {
+      case 0:
+        node.textContent = data[0].day.condition.text;
+        break;
+      case 1:
+        node.textContent = `${data[0].day.daily_chance_of_rain}%`;
+        break;
+      case 2:
+        node.textContent = `${data[0].day.totalprecip_in} inches`;
+        break;
+    }
+  });
+};
+
 function runSearch(locationName) {
   if (locationName !== "") {
     load.showLoading();
@@ -391,6 +415,7 @@ function runSearch(locationName) {
         setBackgroundImgs(locationData, reportData);
         forecastFuture.setFutureDates(futureData);
         forecastFuture.setFutureTempsC(futureData);
+        displayRainForecast(futureData);
       } catch (error) {
         console.log(error);
         toggleSec.clearSection();
