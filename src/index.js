@@ -39,13 +39,13 @@ const getNodes = (function () {
   const hiddenHeader = document.querySelector("h2");
   // For displayLoading()
   const bouncingBall = document.querySelector(".load");
-  // For forecastFuture()
-  const nextDayDate = document.querySelector(".next-date");
-  const thirdDayDate = document.querySelector(".third-date");
-  const fourthDayDate = document.querySelector(".fourth-date");
-  const fifthDayDate = document.querySelector(".fifth-date");
-  const sixthDayDate = document.querySelector(".sixth-date");
-  const lastDayDate = document.querySelector(".last-date");
+  // For setFutureDates()
+  const nextDayDate = document.querySelector(".next-date legend");
+  const thirdDayDate = document.querySelector(".third-date legend");
+  const fourthDayDate = document.querySelector(".fourth-date legend");
+  const fifthDayDate = document.querySelector(".fifth-date legend");
+  const sixthDayDate = document.querySelector(".sixth-date legend");
+  const lastDayDate = document.querySelector(".last-date legend");
   const futureDates = [
     nextDayDate,
     thirdDayDate,
@@ -53,6 +53,21 @@ const getNodes = (function () {
     fifthDayDate,
     sixthDayDate,
     lastDayDate,
+  ];
+  // For setFutureTemps()
+  const nextDayTemp = document.querySelector(".next-date span");
+  const thirdDayTemp = document.querySelector(".third-date span");
+  const fourthDayTemp = document.querySelector(".fourth-date span");
+  const fifthDayTemp = document.querySelector(".fifth-date span");
+  const sixthDayTemp = document.querySelector(".sixth-date span");
+  const lastDayTemp = document.querySelector(".last-date span");
+  const futureTemps = [
+    nextDayTemp,
+    thirdDayTemp,
+    fourthDayTemp,
+    fifthDayTemp,
+    sixthDayTemp,
+    lastDayTemp,
   ];
 
   return {
@@ -77,6 +92,7 @@ const getNodes = (function () {
     hiddenHeader,
     bouncingBall,
     futureDates,
+    futureTemps,
   };
 })();
 
@@ -310,6 +326,35 @@ function runSearch(locationName) {
         toggleUnits(reportData);
         setBackgroundImgs(locationData, reportData);
         setFutureDates(futureData);
+
+        const setFutureTemps = (function () {
+          function displayTemp(num, tempLabel) {
+            tempLabel.innerHTML = `${futureData[num].day.mintemp_c}°C ⤵<br> ${futureData[num].day.maxtemp_c}°C`;
+          }
+
+          getNodes.futureTemps.forEach((temp, index) => {
+            switch (index) {
+              case 0:
+                displayTemp(1, temp);
+                break;
+              case 1:
+                displayTemp(2, temp);
+                break;
+              case 2:
+                displayTemp(3, temp);
+                break;
+              case 3:
+                displayTemp(4, temp);
+                break;
+              case 4:
+                displayTemp(5, temp);
+                break;
+              case 5:
+                displayTemp(6, temp);
+                break;
+            }
+          });
+        })();
       } catch (error) {
         console.log(error);
         toggleSec.clearSection();
