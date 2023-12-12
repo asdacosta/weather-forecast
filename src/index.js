@@ -272,69 +272,73 @@ const toggleSec = (function () {
   return { clearSection, defaultSection };
 })();
 
-const setFutureDates = function (data) {
-  function formatAndDisplayDate(num, dateLabel) {
-    const newDate = new Date(data[num].date);
-    const formattedDate = newDate.toLocaleDateString("en-US", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
+const forecastFuture = (function () {
+  const setFutureDates = function (data) {
+    function formatAndDisplayDate(num, dateLabel) {
+      const newDate = new Date(data[num].date);
+      const formattedDate = newDate.toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      });
+      dateLabel.textContent = formattedDate;
+    }
+
+    getNodes.futureDates.forEach((date, index) => {
+      switch (index) {
+        case 0:
+          formatAndDisplayDate(1, date);
+          break;
+        case 1:
+          formatAndDisplayDate(2, date);
+          break;
+        case 2:
+          formatAndDisplayDate(3, date);
+          break;
+        case 3:
+          formatAndDisplayDate(4, date);
+          break;
+        case 4:
+          formatAndDisplayDate(5, date);
+          break;
+        case 5:
+          formatAndDisplayDate(6, date);
+          break;
+      }
     });
-    dateLabel.textContent = formattedDate;
-  }
+  };
 
-  getNodes.futureDates.forEach((date, index) => {
-    switch (index) {
-      case 0:
-        formatAndDisplayDate(1, date);
-        break;
-      case 1:
-        formatAndDisplayDate(2, date);
-        break;
-      case 2:
-        formatAndDisplayDate(3, date);
-        break;
-      case 3:
-        formatAndDisplayDate(4, date);
-        break;
-      case 4:
-        formatAndDisplayDate(5, date);
-        break;
-      case 5:
-        formatAndDisplayDate(6, date);
-        break;
+  const setFutureTemps = function (data) {
+    function displayTemp(num, tempLabel) {
+      tempLabel.innerHTML = `${data[num].day.mintemp_c}°C ⤵<br> ${data[num].day.maxtemp_c}°C`;
     }
-  });
-};
 
-const setFutureTemps = function (data) {
-  function displayTemp(num, tempLabel) {
-    tempLabel.innerHTML = `${data[num].day.mintemp_c}°C ⤵<br> ${data[num].day.maxtemp_c}°C`;
-  }
+    getNodes.futureTemps.forEach((temp, index) => {
+      switch (index) {
+        case 0:
+          displayTemp(1, temp);
+          break;
+        case 1:
+          displayTemp(2, temp);
+          break;
+        case 2:
+          displayTemp(3, temp);
+          break;
+        case 3:
+          displayTemp(4, temp);
+          break;
+        case 4:
+          displayTemp(5, temp);
+          break;
+        case 5:
+          displayTemp(6, temp);
+          break;
+      }
+    });
+  };
 
-  getNodes.futureTemps.forEach((temp, index) => {
-    switch (index) {
-      case 0:
-        displayTemp(1, temp);
-        break;
-      case 1:
-        displayTemp(2, temp);
-        break;
-      case 2:
-        displayTemp(3, temp);
-        break;
-      case 3:
-        displayTemp(4, temp);
-        break;
-      case 4:
-        displayTemp(5, temp);
-        break;
-      case 5:
-        displayTemp(6, temp);
-        break;
-    }
-  });
-};
+  return { setFutureDates, setFutureTemps };
+})();
 
 function runSearch(locationName) {
   if (locationName !== "") {
@@ -354,8 +358,8 @@ function runSearch(locationName) {
         displayForecast(reportData);
         toggleUnits(reportData);
         setBackgroundImgs(locationData, reportData);
-        setFutureDates(futureData);
-        setFutureTemps(futureData);
+        forecastFuture.setFutureDates(futureData);
+        forecastFuture.setFutureTemps(futureData);
       } catch (error) {
         console.log(error);
         toggleSec.clearSection();
