@@ -69,6 +69,8 @@ const getNodes = (function () {
     sixthDayTemp,
     lastDayTemp,
   ];
+  // For updateFutureRainForecast()
+  const futureDivs = document.querySelectorAll(".first-sec fieldset");
   // For displayRainForecast()
   const rainDate = document.querySelector(".last-sec legend");
   const clouds = document.querySelector(".clouds");
@@ -101,6 +103,7 @@ const getNodes = (function () {
     futureTemps,
     rainDate,
     rainForecastNodes,
+    futureDivs,
   };
 })();
 
@@ -282,6 +285,22 @@ const toggleSec = (function () {
   return { clearSection, defaultSection };
 })();
 
+const displayRainForecast = function (num, data) {
+  getNodes.rainForecastNodes.forEach((node, index) => {
+    switch (index) {
+      case 0:
+        node.textContent = data[num].day.condition.text;
+        break;
+      case 1:
+        node.textContent = `${data[num].day.daily_chance_of_rain}%`;
+        break;
+      case 2:
+        node.textContent = `${data[num].day.totalprecip_in} in`;
+        break;
+    }
+  });
+};
+
 const forecastFuture = (function () {
   const setFutureDates = function (data) {
     function formatAndDisplayDate(num, dateLabel) {
@@ -376,24 +395,54 @@ const forecastFuture = (function () {
     });
   };
 
-  return { setFutureDates, setFutureTempsC, setFutureTempsF };
-})();
-
-const displayRainForecast = function (data) {
-  getNodes.rainForecastNodes.forEach((node, index) => {
-    switch (index) {
-      case 0:
-        node.textContent = data[0].day.condition.text;
-        break;
-      case 1:
-        node.textContent = `${data[0].day.daily_chance_of_rain}%`;
-        break;
-      case 2:
-        node.textContent = `${data[0].day.totalprecip_in} inches`;
-        break;
+  const updateFutureRainForecast = function (data) {
+    function formatAndDisplayDate(number) {
+      const newDate = new Date(data[number].date);
+      const formattedDate = newDate.toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      });
+      getNodes.rainDate.textContent = formattedDate;
     }
-  });
-};
+
+    function displayOnHover(num, container) {
+      container.addEventListener("mouseover", () => {
+        formatAndDisplayDate(num + 1);
+        displayRainForecast(num + 1, data);
+      });
+      container.addEventListener("mouseout", () => {
+        getNodes.rainDate.textContent = "Today";
+        displayRainForecast(0, data);
+      });
+    }
+
+    getNodes.futureDivs.forEach((div, index) => {
+      switch (index) {
+        case 0:
+          displayOnHover(index, div);
+          break;
+        case 1:
+          displayOnHover(index, div);
+          break;
+        case 2:
+          displayOnHover(index, div);
+          break;
+        case 3:
+          displayOnHover(index, div);
+          break;
+        case 4:
+          displayOnHover(index, div);
+          break;
+        case 5:
+          displayOnHover(index, div);
+          break;
+      }
+    });
+  };
+
+  return { setFutureDates, setFutureTempsC, setFutureTempsF, updateFutureRainForecast };
+})();
 
 function runSearch(locationName) {
   if (locationName !== "") {
@@ -413,9 +462,10 @@ function runSearch(locationName) {
         displayForecast(reportData);
         toggleUnits(reportData, futureData);
         setBackgroundImgs(locationData, reportData);
+        displayRainForecast(0, futureData);
         forecastFuture.setFutureDates(futureData);
         forecastFuture.setFutureTempsC(futureData);
-        displayRainForecast(futureData);
+        forecastFuture.updateFutureRainForecast(futureData);
       } catch (error) {
         console.log(error);
         toggleSec.clearSection();
