@@ -307,6 +307,35 @@ const setFutureDates = function (data) {
   });
 };
 
+const setFutureTemps = function (data) {
+  function displayTemp(num, tempLabel) {
+    tempLabel.innerHTML = `${data[num].day.mintemp_c}°C ⤵<br> ${data[num].day.maxtemp_c}°C`;
+  }
+
+  getNodes.futureTemps.forEach((temp, index) => {
+    switch (index) {
+      case 0:
+        displayTemp(1, temp);
+        break;
+      case 1:
+        displayTemp(2, temp);
+        break;
+      case 2:
+        displayTemp(3, temp);
+        break;
+      case 3:
+        displayTemp(4, temp);
+        break;
+      case 4:
+        displayTemp(5, temp);
+        break;
+      case 5:
+        displayTemp(6, temp);
+        break;
+    }
+  });
+};
+
 function runSearch(locationName) {
   if (locationName !== "") {
     load.showLoading();
@@ -326,35 +355,7 @@ function runSearch(locationName) {
         toggleUnits(reportData);
         setBackgroundImgs(locationData, reportData);
         setFutureDates(futureData);
-
-        const setFutureTemps = (function () {
-          function displayTemp(num, tempLabel) {
-            tempLabel.innerHTML = `${futureData[num].day.mintemp_c}°C ⤵<br> ${futureData[num].day.maxtemp_c}°C`;
-          }
-
-          getNodes.futureTemps.forEach((temp, index) => {
-            switch (index) {
-              case 0:
-                displayTemp(1, temp);
-                break;
-              case 1:
-                displayTemp(2, temp);
-                break;
-              case 2:
-                displayTemp(3, temp);
-                break;
-              case 3:
-                displayTemp(4, temp);
-                break;
-              case 4:
-                displayTemp(5, temp);
-                break;
-              case 5:
-                displayTemp(6, temp);
-                break;
-            }
-          });
-        })();
+        setFutureTemps(futureData);
       } catch (error) {
         console.log(error);
         toggleSec.clearSection();
