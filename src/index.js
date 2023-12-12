@@ -39,6 +39,21 @@ const getNodes = (function () {
   const hiddenHeader = document.querySelector("h2");
   // For displayLoading()
   const bouncingBall = document.querySelector(".load");
+  // For forecastFuture()
+  const nextDayDate = document.querySelector(".next-date");
+  const thirdDayDate = document.querySelector(".third-date");
+  const fourthDayDate = document.querySelector(".fourth-date");
+  const fifthDayDate = document.querySelector(".fifth-date");
+  const sixthDayDate = document.querySelector(".sixth-date");
+  const lastDayDate = document.querySelector(".last-date");
+  const futureDates = [
+    nextDayDate,
+    thirdDayDate,
+    fourthDayDate,
+    fifthDayDate,
+    sixthDayDate,
+    lastDayDate,
+  ];
 
   return {
     header,
@@ -61,12 +76,13 @@ const getNodes = (function () {
     visibleChildren,
     hiddenHeader,
     bouncingBall,
+    futureDates,
   };
 })();
 
 const getData = async function (location) {
   const response = await fetch(
-    `http://api.weatherapi.com/v1/current.json?key=06393eb913004a98bfe70936230812&q=${location}`,
+    `http://api.weatherapi.com/v1/forecast.json?key=06393eb913004a98bfe70936230812&q=${location}&days=7`,
     { mode: "cors" },
   );
   const weatherData = await response.json();
@@ -240,6 +256,41 @@ const toggleSec = (function () {
   return { clearSection, defaultSection };
 })();
 
+const setFutureDates = function (data) {
+  function formatAndDisplayDate(num, dateLabel) {
+    const newDate = new Date(data[num].date);
+    const formattedDate = newDate.toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+    dateLabel.textContent = formattedDate;
+  }
+
+  getNodes.futureDates.forEach((date, index) => {
+    switch (index) {
+      case 0:
+        formatAndDisplayDate(1, date);
+        break;
+      case 1:
+        formatAndDisplayDate(2, date);
+        break;
+      case 2:
+        formatAndDisplayDate(3, date);
+        break;
+      case 3:
+        formatAndDisplayDate(4, date);
+        break;
+      case 4:
+        formatAndDisplayDate(5, date);
+        break;
+      case 5:
+        formatAndDisplayDate(6, date);
+        break;
+    }
+  });
+};
+
 function runSearch(locationName) {
   if (locationName !== "") {
     load.showLoading();
@@ -251,12 +302,14 @@ function runSearch(locationName) {
         load.removeLoading();
         const locationData = weatherData.location;
         const reportData = weatherData.current;
+        const futureData = weatherData.forecast.forecastday;
 
         toggleSec.defaultSection();
         displayLocationDetails(locationData);
         displayForecast(reportData);
         toggleUnits(reportData);
         setBackgroundImgs(locationData, reportData);
+        setFutureDates(futureData);
       } catch (error) {
         console.log(error);
         toggleSec.clearSection();
@@ -284,10 +337,10 @@ const forecast = (function () {
   });
 })();
 
-const giveFeedbackAtPageLoad = (function () {
-  toggleSec.clearSection();
-  getNodes.hiddenHeader.textContent = "Search any spot globally!";
-})();
+// const giveFeedbackAtPageLoad = (function () {
+//   toggleSec.clearSection();
+//   getNodes.hiddenHeader.textContent = "Search any spot globally!";
+// })();
 
 const load = (function () {
   const showLoading = function () {
