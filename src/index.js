@@ -441,8 +441,52 @@ const forecastFuture = (function () {
     });
   };
 
-  return { setFutureDates, setFutureTempsC, setFutureTempsF, updateFutureRainForecast };
+  return {
+    setFutureDates,
+    setFutureTempsC,
+    setFutureTempsF,
+    updateFutureRainForecast,
+  };
 })();
+
+let isLooping = false;
+const slideshow = function (data) {
+  function formatAndDisplayDate(number) {
+    const newDate = new Date(data[number].date);
+    const formattedDate = newDate.toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+    getNodes.rainDate.textContent = formattedDate;
+  }
+
+  const loopDivs = (async function () {
+    // Wait for previous loop to complete when called
+    if (isLooping) return;
+    isLooping = true;
+
+    try {
+      let index = 0;
+      for (const div of getNodes.futureDivs) {
+        div.classList.add("scale-up");
+        if (div.classList.contains("scale-up")) {
+          formatAndDisplayDate(index + 1);
+          displayRainForecast(index + 1, data);
+        }
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        div.classList.remove("scale-up");
+        index += 1;
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      getNodes.rainDate.textContent = "Today";
+      displayRainForecast(0, data);
+      isLooping = false;
+    }
+  })();
+};
 
 function runSearch(locationName) {
   if (locationName !== "") {
@@ -466,6 +510,7 @@ function runSearch(locationName) {
         forecastFuture.setFutureDates(futureData);
         forecastFuture.setFutureTempsC(futureData);
         forecastFuture.updateFutureRainForecast(futureData);
+        slideshow(futureData);
       } catch (error) {
         console.log(error);
         toggleSec.clearSection();
