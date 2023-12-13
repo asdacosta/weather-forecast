@@ -532,9 +532,42 @@ const slideshow = function (data) {
     }
   };
 
-  getNodes.slideButton.removeEventListener("click", previousLoop);
-  previousLoop = loopDivs;
-  getNodes.slideButton.addEventListener("click", loopDivs);
+  const waitToFinishLoopOnclick = (async function () {
+    // Remove previous loop event and update with current
+    getNodes.slideButton.removeEventListener("click", previousLoop);
+    previousLoop = loopDivs;
+    getNodes.slideButton.addEventListener("click", loopDivs);
+
+    getNodes.slideButton.addEventListener("click", async () => {
+      const haltInteraction = (function () {
+        getNodes.searchInput.style.backgroundColor = "rgb(190, 190, 190)";
+        getNodes.searchButton.style.backgroundColor = "rgb(190, 190, 190)";
+        getNodes.searchInput.style.pointerEvents = "none";
+        getNodes.searchButton.style.pointerEvents = "none";
+      })();
+      await new Promise((resolve) => setTimeout(resolve, 12000));
+
+      const defaultInteraction = (function () {
+        getNodes.searchInput.style.pointerEvents = "auto";
+        getNodes.searchInput.style.backgroundColor = "white";
+        getNodes.searchInput.addEventListener("mouseover", () => {
+          getNodes.searchInput.style.backgroundColor = "rgb(229, 213, 190)";
+        });
+        getNodes.searchInput.addEventListener("mouseout", () => {
+          getNodes.searchInput.style.backgroundColor = "white";
+        });
+
+        getNodes.searchButton.style.pointerEvents = "auto";
+        getNodes.searchButton.style.backgroundColor = "white";
+        getNodes.searchButton.addEventListener("mouseover", () => {
+          getNodes.searchButton.style.backgroundColor = "burlywood";
+        });
+        getNodes.searchButton.addEventListener("mouseout", () => {
+          getNodes.searchButton.style.backgroundColor = "white";
+        });
+      })();
+    });
+  })();
 };
 
 function runSearch(locationName) {
@@ -610,3 +643,5 @@ const load = (function () {
 
   return { showLoading, removeLoading };
 })();
+
+//TODO: Set default location
