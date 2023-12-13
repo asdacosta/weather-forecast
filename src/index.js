@@ -621,11 +621,6 @@ const forecast = (function () {
   });
 })();
 
-// const giveFeedbackAtPageLoad = (function () {
-//   toggleSec.clearSection();
-//   getNodes.hiddenHeader.textContent = "Search any spot globally!";
-// })();
-
 const load = (function () {
   const showLoading = function () {
     toggleSec.clearSection();
@@ -644,4 +639,6 @@ const load = (function () {
   return { showLoading, removeLoading };
 })();
 
-//TODO: Set default location
+const setDefaultLocationAtPageLoad = (function () {
+  runSearch("Ottawa");
+})();
