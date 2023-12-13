@@ -151,35 +151,35 @@ const displayLocationDetails = function (data) {
       weekday: "long",
     });
 
-    getNodes.date.textContent = `${dayOfWeek}, ${formattedDate}`;
+    getNodes.date.textContent = `${dayOfWeek} ⚫ ${formattedDate}`;
     getNodes.time.textContent = dateAndTime[1];
   })();
 };
 
 const displayForecast = function (data) {
   const setInitialForecasts = (function () {
-    getNodes.temp.textContent = `${data.temp_c}°C`;
-    getNodes.windSpeed.textContent = `${data.wind_kph} kp/h`;
-    getNodes.windDirection.textContent = `${data.wind_degree} (${data.wind_dir})`;
-    getNodes.humidity.textContent = `${data.humidity}%`;
+    getNodes.temp.innerHTML = `${data.temp_c}<em>°C</em>`;
+    getNodes.windSpeed.innerHTML = `${data.wind_kph} <em>kp/h</em>`;
+    getNodes.windDirection.innerHTML = `${data.wind_degree} <em>(${data.wind_dir})</em>`;
+    getNodes.humidity.innerHTML = `${data.humidity}<em>%</em>`;
   })();
 
   const setRadiation = (function () {
     switch (true) {
       case data.uv >= 0 && data.uv <= 2:
-        getNodes.radiation.textContent = "Low";
+        getNodes.radiation.innerHTML = `Low <em>(${data.uv}/11)</em>`;
         break;
       case data.uv >= 3 && data.uv <= 5:
-        getNodes.radiation.textContent = "Moderate";
+        getNodes.radiation.innerHTML = `Moderate <em>(${data.uv}/11)</em>`;
         break;
       case data.uv >= 6 && data.uv <= 7:
-        getNodes.radiation.textContent = "High";
+        getNodes.radiation.innerHTML = `High <em>(${data.uv}/11)</em>`;
         break;
       case data.uv >= 8 && data.uv <= 10:
-        getNodes.radiation.textContent = " Very High";
+        getNodes.radiation.innerHTML = `Very High <em>(${data.uv}/11)</em>`;
         break;
       case data.uv >= 11:
-        getNodes.radiation.textContent = "Extreme";
+        getNodes.radiation.innerHTML = `Extreme <em>(${data.uv}/11)</em>`;
         break;
       default:
         getNodes.radiation.textContent = "Unknown Radiation";
@@ -202,12 +202,12 @@ const toggleUnits = function (data, futureData) {
     getNodes.tempButton.addEventListener("click", () => {
       if (toggleTemp) {
         getNodes.tempButton.textContent = "°F";
-        getNodes.temp.textContent = `${data.temp_c}°C`;
+        getNodes.temp.innerHTML = `${data.temp_c}<em>°C</em>`;
         forecastFuture.setFutureTempsC(futureData);
         toggleTemp = false;
       } else {
         getNodes.tempButton.textContent = "°C";
-        getNodes.temp.textContent = `${data.temp_f}°F`;
+        getNodes.temp.innerHTML = `${data.temp_f}<em>°F</em>`;
         forecastFuture.setFutureTempsF(futureData);
         toggleTemp = true;
       }
@@ -218,11 +218,11 @@ const toggleUnits = function (data, futureData) {
     getNodes.windSpeedButton.addEventListener("click", () => {
       if (toggleWindSpeed) {
         getNodes.windSpeedButton.textContent = "mp/h";
-        getNodes.windSpeed.textContent = `${data.wind_kph} kp/h`;
+        getNodes.windSpeed.innerHTML = `${data.wind_kph} <em>kp/h</em>`;
         toggleWindSpeed = false;
       } else {
         getNodes.windSpeedButton.textContent = "kp/h";
-        getNodes.windSpeed.textContent = `${data.wind_mph} mp/h`;
+        getNodes.windSpeed.innerHTML = `${data.wind_mph} <em>mp/h</em>`;
         toggleWindSpeed = true;
       }
     });
@@ -300,10 +300,10 @@ const displayRainForecast = function (num, data) {
         node.textContent = data[num].day.condition.text;
         break;
       case 1:
-        node.textContent = `${data[num].day.daily_chance_of_rain}%`;
+        node.innerHTML = `${data[num].day.daily_chance_of_rain}<em>%<em>`;
         break;
       case 2:
-        node.textContent = `${data[num].day.totalprecip_in} in`;
+        node.innerHTML = `${data[num].day.totalprecip_in} <em>in<em>`;
         break;
     }
   });
