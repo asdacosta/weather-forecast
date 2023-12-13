@@ -577,7 +577,7 @@ function runSearch(locationName) {
       try {
         const weatherData = await getData(locationName);
         console.log(weatherData);
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await new Promise((resolve) => setTimeout(resolve, 1500));
         load.removeLoading();
         const locationData = weatherData.location;
         const reportData = weatherData.current;
