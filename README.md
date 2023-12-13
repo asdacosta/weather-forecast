@@ -97,8 +97,12 @@ Developers, users, recruiters.
 | - | - |
 |`src/assets/morning.jpg`| Photo created by Jonatan Pie on [Unsplash](https://unsplash.com/).|
 |`src/assets/evening.jpg`| Photo created by Andre Benz on [Unsplash](https://unsplash.com/).|
+|`src/assets/rain.jpg`| Photo created by Jonathan Bowers on [Unsplash](https://unsplash.com/).|
 |`src/assets/night.jpg`| Photo created by Pexels on [Pixabay](https://pixabay.com/).|
 |`src/assets/midnight.jpg`| Photo created by Neale LaSalle on [Pexels](https://www.pexels.com/).|
+|`src/assets/storm.png`| Photo created by Freepik on [Flaticon](https://www.flaticon.com/).|
+
+
 
 
 </details>
