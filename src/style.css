@@ -83,7 +83,7 @@ fieldset.scale-up {
   gap: 0.5rem;
   grid-row: 1 / span 1;
   grid-column: 2 / span 1;
-  z-index: 2;
+  z-index: 10;
 }
 
 .buttons-sec {
@@ -154,7 +154,7 @@ button:hover {
     rgba(133, 100, 58, 0.5)
   );
   box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.5);
-  z-index: 2;
+  z-index: 10;
 }
 
 .last-sec {
