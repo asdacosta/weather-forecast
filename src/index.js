@@ -11,6 +11,7 @@ const importAllAssets = (function () {
 
 const getNodes = (function () {
   const header = document.querySelector("h1");
+  const overlay = document.querySelector("body > div:first-child");
   // For searchLocation()
   const searchInput = document.querySelector("input");
   const searchButton = document.querySelector(".search-sec button");
@@ -109,6 +110,7 @@ const getNodes = (function () {
     futureDivs,
     slideButton,
     futureIcons,
+    overlay,
   };
 })();
 
@@ -580,6 +582,7 @@ function runSearch(locationName) {
         console.log(weatherData);
         await new Promise((resolve) => setTimeout(resolve, 1500));
         load.removeLoading();
+        getNodes.overlay.style.zIndex = "auto";
         const locationData = weatherData.location;
         const reportData = weatherData.current;
         const futureData = weatherData.forecast.forecastday;
@@ -598,6 +601,7 @@ function runSearch(locationName) {
       } catch (error) {
         console.log(error);
         toggleSec.clearSection();
+        getNodes.overlay.style.zIndex = "3";
         getNodes.hiddenHeader.textContent = "Invalid spot :(";
         getNodes.displaySection.style.backgroundImage =
           "linear-gradient(to right, rgba(55, 55, 109, 0.4), rgba(52, 109, 52, 0.4), rgba(133, 100, 58, 0.4))";
