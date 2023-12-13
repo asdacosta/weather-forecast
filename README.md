@@ -49,15 +49,15 @@ Builds a weather forecast website using APIs.
 <details>
 <summary>Features</summary>
 
-* Search weather details for any location.
-* Sets background that aligns with the Time and Temperature of location.
-* Displays the root of the location(Continent, Country, Region).
-* Displays Date and Time of location at time of forecast.
-* Toggle Temperature unit between Fahrenheit / Celsius.
-* Toggle Wind Speed unit between KPH / MPH.
-* Displays forecast details in human-readable format.
-* Displays a smooth loading animation whiles search is on going.
-
+* Display a 7-day weather forecast for any location.
+* Set background based on location's Time and Temperature.
+* Display location's root (Continent, Country, Region).
+* Display Date and Time of location at time of forecast.
+* Toggle Temperature unit (Fahrenheit/Celsius) and Wind Speed unit (KPH/MPH).
+* Display a slideshow of the next 6-day weather forecast.
+* View detailed weather by hovering over the 6-day forecast.
+* Displays forecast details in readable format.
+* Smooth loading animation during search.
 
 </details>
 
