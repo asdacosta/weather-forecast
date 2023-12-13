@@ -103,6 +103,17 @@ fieldset.scale-up {
   gap: 0.5rem;
 }
 
+button {
+  color: white;
+  background: linear-gradient(to bottom, rgb(0, 0, 0), rgb(2, 116, 116));
+}
+
+button:hover {
+  color: white;
+  background: rgb(0, 88, 88);
+  cursor: pointer;
+}
+
 .buttons-sec button:first-child {
   width: 100%;
   font-weight: 500;
@@ -138,9 +149,9 @@ fieldset.scale-up {
   justify-content: space-evenly;
   background: linear-gradient(
     to right,
-    rgba(55, 55, 109, 0.4),
-    rgba(52, 109, 52, 0.4),
-    rgba(133, 100, 58, 0.4)
+    rgba(55, 55, 109, 0.5),
+    rgba(52, 109, 52, 0.5),
+    rgba(133, 100, 58, 0.5)
   );
   box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.5);
   z-index: 2;
@@ -246,13 +257,7 @@ input,
 }
 
 input:hover {
-  background-color: rgb(229, 213, 190);
-}
-
-button:hover {
-  background-color: burlywood;
-  cursor: pointer;
-  color: rgb(83, 83, 83);
+  background-color: rgb(197, 223, 223);
 }
 
 h1 {
@@ -387,7 +392,8 @@ svg {
   display: none;
   width: 2.5rem;
   height: 2.5rem;
-  background-color: rgb(228, 171, 92);
+  background: linear-gradient(to bottom, rgb(0, 31, 31), rgb(6, 141, 141));
+  box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.5);
   border-radius: 50%;
   animation: bounce 1s infinite;
 }
