@@ -56,7 +56,7 @@ fieldset.scale-up {
   font-size: 0.8rem;
   border: 1px solid white;
   border-radius: 1rem;
-  margin: auto;
+  margin-left: 1rem;
   padding: 0.1rem 0.3rem;
 }
 
@@ -127,9 +127,9 @@ fieldset.scale-up {
   grid-column: 2 / span 1;
   justify-self: center;
   border: 1px solid rgb(255, 255, 255);
-  border-radius: 2rem;
+  border-radius: 2.5rem;
   width: 55rem;
-  height: 47rem;
+  height: 45rem;
   font-size: 1.05rem;
   color: white;
   display: flex;
@@ -159,7 +159,7 @@ fieldset.scale-up {
   background-size: cover;
   background-position: center center;
   cursor: context-menu;
-  border-radius: 1.5rem;
+  border-radius: 2rem;
   grid-row: 2 / -1;
   grid-column: 3 / -1;
   z-index: 2;
