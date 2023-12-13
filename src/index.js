@@ -147,8 +147,11 @@ const displayLocationDetails = function (data) {
       day: "numeric",
       year: "numeric",
     });
+    const dayOfWeek = date.toLocaleDateString("en-US", {
+      weekday: "long",
+    });
 
-    getNodes.date.textContent = formattedDate;
+    getNodes.date.textContent = `${dayOfWeek}, ${formattedDate}`;
     getNodes.time.textContent = dateAndTime[1];
   })();
 };
@@ -310,12 +313,10 @@ const forecastFuture = (function () {
   const setFutureDates = function (data) {
     function formatAndDisplayDate(num, dateLabel) {
       const newDate = new Date(data[num].date);
-      const formattedDate = newDate.toLocaleDateString("en-US", {
-        month: "long",
-        day: "numeric",
-        year: "numeric",
+      const dayOfWeek = newDate.toLocaleDateString("en-US", {
+        weekday: "long",
       });
-      dateLabel.textContent = formattedDate;
+      dateLabel.textContent = dayOfWeek;
     }
 
     getNodes.futureDates.forEach((date, index) => {
@@ -403,12 +404,10 @@ const forecastFuture = (function () {
   const updateFutureRainForecast = function (data) {
     function formatAndDisplayDate(number) {
       const newDate = new Date(data[number].date);
-      const formattedDate = newDate.toLocaleDateString("en-US", {
-        month: "long",
-        day: "numeric",
-        year: "numeric",
+      const dayOfWeek = newDate.toLocaleDateString("en-US", {
+        weekday: "long",
       });
-      getNodes.rainDate.textContent = formattedDate;
+      getNodes.rainDate.textContent = dayOfWeek;
     }
 
     function displayOnHover(num, container) {
@@ -498,12 +497,10 @@ let previousLoop = null;
 const slideshow = function (data) {
   function formatAndDisplayDate(number) {
     const newDate = new Date(data[number].date);
-    const formattedDate = newDate.toLocaleDateString("en-US", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
+    const dayOfWeek = newDate.toLocaleDateString("en-US", {
+      weekday: "long",
     });
-    getNodes.rainDate.textContent = formattedDate;
+    getNodes.rainDate.textContent = dayOfWeek;
   }
 
   const loopDivs = async function () {
