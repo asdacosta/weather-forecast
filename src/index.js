@@ -542,7 +542,7 @@ const slideshow = function (data) {
     getNodes.slideButton.addEventListener("click", async () => {
       const haltInteraction = (function () {
         getNodes.searchInput.style.backgroundColor = "rgb(190, 190, 190)";
-        getNodes.searchButton.style.backgroundColor = "rgb(190, 190, 190)";
+        getNodes.searchButton.style.color = "grey";
         getNodes.searchInput.style.pointerEvents = "none";
         getNodes.searchButton.style.pointerEvents = "none";
       })();
@@ -552,16 +552,16 @@ const slideshow = function (data) {
         getNodes.searchInput.style.pointerEvents = "auto";
         getNodes.searchInput.style.backgroundColor = "white";
         getNodes.searchInput.addEventListener("mouseover", () => {
-          getNodes.searchInput.style.backgroundColor = "rgb(229, 213, 190)";
+          getNodes.searchInput.style.backgroundColor = "rgb(197, 223, 223)";
         });
         getNodes.searchInput.addEventListener("mouseout", () => {
           getNodes.searchInput.style.backgroundColor = "white";
         });
 
         getNodes.searchButton.style.pointerEvents = "auto";
-        getNodes.searchButton.style.backgroundColor = "white";
+        getNodes.searchButton.style.color = "white";
         getNodes.searchButton.addEventListener("mouseover", () => {
-          getNodes.searchButton.style.backgroundColor = "burlywood";
+          getNodes.searchButton.style.backgroundColor = "rgb(0, 88, 88)";
         });
         getNodes.searchButton.addEventListener("mouseout", () => {
           getNodes.searchButton.style.backgroundColor = "white";
