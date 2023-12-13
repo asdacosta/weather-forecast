@@ -140,19 +140,23 @@ const displayLocationDetails = function (data) {
   })();
 
   const setDateAndTimeFormats = (function () {
-    const dateAndTime = data.localtime.split(" ");
-    const date = new Date(dateAndTime[0]);
+    const dateAndTime = data.localtime;
+    const date = new Date(dateAndTime);
     const formattedDate = date.toLocaleDateString("en-US", {
       month: "long",
       day: "numeric",
       year: "numeric",
+    });
+    const formattedTime = date.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
     });
     const dayOfWeek = date.toLocaleDateString("en-US", {
       weekday: "long",
     });
 
     getNodes.date.textContent = `${dayOfWeek} ⚫ ${formattedDate}`;
-    getNodes.time.textContent = dateAndTime[1];
+    getNodes.time.textContent = formattedTime;
   })();
 };
 
