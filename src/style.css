@@ -220,7 +220,7 @@ fieldset.scale-up {
 }
 
 .last-sec span:last-child {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
 .small {
@@ -343,6 +343,7 @@ h3 {
 .weather-div > div {
   display: grid;
   grid-template: 1fr 2fr / 1fr 3.5fr;
+  column-gap: 0.3rem;
 }
 
 .weather-div > div > div {
@@ -357,8 +358,12 @@ h3 {
 }
 
 .weather-div > div > span:last-child {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 600;
+}
+
+em {
+  font-size: 1rem;
 }
 
 svg {
