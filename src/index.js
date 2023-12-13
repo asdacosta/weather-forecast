@@ -76,6 +76,8 @@ const getNodes = (function () {
   const chanceOfRain = document.querySelector(".chance");
   const precipitation = document.querySelector(".prec");
   const rainForecastNodes = [clouds, chanceOfRain, precipitation];
+  // For slideshow()
+  const slideButton = document.querySelector(".buttons-sec button:first-child");
 
   return {
     header,
@@ -103,6 +105,7 @@ const getNodes = (function () {
     rainDate,
     rainForecastNodes,
     futureDivs,
+    slideButton,
   };
 })();
 
@@ -449,6 +452,7 @@ const forecastFuture = (function () {
 })();
 
 let isLooping = false;
+let previousLoop = null;
 const slideshow = function (data) {
   function formatAndDisplayDate(number) {
     const newDate = new Date(data[number].date);
@@ -460,8 +464,8 @@ const slideshow = function (data) {
     getNodes.rainDate.textContent = formattedDate;
   }
 
-  const loopDivs = (async function () {
-    // Wait for previous loop to complete when called
+  const loopDivs = async function () {
+    // Wait for previous loop to complete
     if (isLooping) return;
     isLooping = true;
 
@@ -484,7 +488,11 @@ const slideshow = function (data) {
       displayRainForecast(0, data);
       isLooping = false;
     }
-  })();
+  };
+
+  getNodes.slideButton.removeEventListener("click", previousLoop);
+  previousLoop = loopDivs;
+  getNodes.slideButton.addEventListener("click", loopDivs);
 };
 
 function runSearch(locationName) {
