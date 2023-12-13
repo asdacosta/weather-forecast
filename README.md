@@ -101,17 +101,14 @@ Developers, users, recruiters.
 |`src/assets/midnight.jpg`| Photo created by Neale LaSalle on [Pexels](https://www.pexels.com/).|
 
 
-
-
-
-
 </details>
 
 ## 🔄 Improvements
 <details>
 <summary>Invert</summary>
 
-- [ ] ###
+- [ ] Add hourly weather forecast for current day. (Check other works for inspo)
+- [ ] Use better background images in .main-sec that depict current weather accurately.
 
 </details>
 
