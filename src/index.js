@@ -116,7 +116,7 @@ const getNodes = (function () {
 
 const getData = async function (location) {
   const response = await fetch(
-    `http://api.weatherapi.com/v1/forecast.json?key=06393eb913004a98bfe70936230812&q=${location}&days=7`,
+    `https://api.weatherapi.com/v1/forecast.json?key=06393eb913004a98bfe70936230812&q=${location}&days=7`,
     { mode: "cors" },
   );
   const weatherData = await response.json();
