@@ -205,6 +205,7 @@ const toggleUnits = function (data, futureData) {
   let toggleWindSpeed = false;
 
   const toggleTempUnit = (function () {
+    getNodes.tempButton.textContent = "°F"; // Set to default at pageload
     getNodes.tempButton.addEventListener("click", () => {
       if (toggleTemp) {
         getNodes.tempButton.textContent = "°F";
@@ -221,6 +222,7 @@ const toggleUnits = function (data, futureData) {
   })();
 
   const toggleWindSpeedUnit = (function () {
+    getNodes.windSpeedButton.textContent = "mp/h"; // Set to default at pageload
     getNodes.windSpeedButton.addEventListener("click", () => {
       if (toggleWindSpeed) {
         getNodes.windSpeedButton.textContent = "mp/h";
