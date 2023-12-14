@@ -157,7 +157,7 @@ const displayLocationDetails = function (data) {
       weekday: "long",
     });
 
-    getNodes.date.textContent = `${dayOfWeek} ⚫ ${formattedDate}`;
+    getNodes.date.textContent = `${formattedDate} | ${dayOfWeek}`;
     getNodes.time.textContent = formattedTime;
   })();
 };
@@ -322,7 +322,7 @@ const forecastFuture = (function () {
       const dayOfWeek = newDate.toLocaleDateString("en-US", {
         weekday: "long",
       });
-      dateLabel.textContent = dayOfWeek;
+      dateLabel.textContent = `⚫ ${dayOfWeek}`;
     }
 
     getNodes.futureDates.forEach((date, index) => {
