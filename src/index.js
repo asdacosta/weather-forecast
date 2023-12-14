@@ -200,43 +200,6 @@ const displayForecast = function (data) {
   })();
 };
 
-const toggleUnits = function (data, futureData) {
-  let toggleTemp = false;
-  let toggleWindSpeed = false;
-
-  const toggleTempUnit = (function () {
-    getNodes.tempButton.textContent = "°F"; // Set to default at pageload
-    getNodes.tempButton.addEventListener("click", () => {
-      if (toggleTemp) {
-        getNodes.tempButton.textContent = "°F";
-        getNodes.temp.innerHTML = `${data.temp_c}<em>°C</em>`;
-        forecastFuture.setFutureTempsC(futureData);
-        toggleTemp = false;
-      } else {
-        getNodes.tempButton.textContent = "°C";
-        getNodes.temp.innerHTML = `${data.temp_f}<em>°F</em>`;
-        forecastFuture.setFutureTempsF(futureData);
-        toggleTemp = true;
-      }
-    });
-  })();
-
-  const toggleWindSpeedUnit = (function () {
-    getNodes.windSpeedButton.textContent = "mp/h"; // Set to default at pageload
-    getNodes.windSpeedButton.addEventListener("click", () => {
-      if (toggleWindSpeed) {
-        getNodes.windSpeedButton.textContent = "mp/h";
-        getNodes.windSpeed.innerHTML = `${data.wind_kph} <em>kp/h</em>`;
-        toggleWindSpeed = false;
-      } else {
-        getNodes.windSpeedButton.textContent = "kp/h";
-        getNodes.windSpeed.innerHTML = `${data.wind_mph} <em>mp/h</em>`;
-        toggleWindSpeed = true;
-      }
-    });
-  })();
-};
-
 const setBackgroundImgs = function (location, report) {
   const dateAndTime = location.localtime.split(" ");
   const [hourStr, minStr] = dateAndTime[1].split(":");
@@ -499,6 +462,43 @@ const forecastFuture = (function () {
     swapIconForSunnyForecasts,
   };
 })();
+
+const toggleUnits = function (data, futureData) {
+  let toggleTemp = false;
+  let toggleWindSpeed = false;
+
+  const toggleTempUnit = (function () {
+    getNodes.tempButton.textContent = "°F"; // Set to default at pageload
+    getNodes.tempButton.addEventListener("click", () => {
+      if (toggleTemp) {
+        getNodes.tempButton.textContent = "°F";
+        getNodes.temp.innerHTML = `${data.temp_c}<em>°C</em>`;
+        forecastFuture.setFutureTempsC(futureData);
+        toggleTemp = false;
+      } else {
+        getNodes.tempButton.textContent = "°C";
+        getNodes.temp.innerHTML = `${data.temp_f}<em>°F</em>`;
+        forecastFuture.setFutureTempsF(futureData);
+        toggleTemp = true;
+      }
+    });
+  })();
+
+  const toggleWindSpeedUnit = (function () {
+    getNodes.windSpeedButton.textContent = "mp/h"; // Set to default at pageload
+    getNodes.windSpeedButton.addEventListener("click", () => {
+      if (toggleWindSpeed) {
+        getNodes.windSpeedButton.textContent = "mp/h";
+        getNodes.windSpeed.innerHTML = `${data.wind_kph} <em>kp/h</em>`;
+        toggleWindSpeed = false;
+      } else {
+        getNodes.windSpeedButton.textContent = "kp/h";
+        getNodes.windSpeed.innerHTML = `${data.wind_mph} <em>mp/h</em>`;
+        toggleWindSpeed = true;
+      }
+    });
+  })();
+};
 
 let isLooping = false;
 let previousLoop = null;
