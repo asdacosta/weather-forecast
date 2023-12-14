@@ -581,7 +581,7 @@ function runSearch(locationName) {
     const extractDataAndExecute = (async function () {
       try {
         const weatherData = await getData(locationName);
-        console.log(weatherData);
+        // console.log(weatherData);
         await new Promise((resolve) => setTimeout(resolve, 1500));
         load.removeLoading();
         getNodes.overlay.style.zIndex = "auto";
@@ -604,7 +604,7 @@ function runSearch(locationName) {
         console.log(error);
         toggleSec.clearSection();
         getNodes.overlay.style.zIndex = "3";
-        getNodes.hiddenHeader.textContent = "Invalid spot :(";
+        getNodes.hiddenHeader.textContent = "Invalid location :(";
         getNodes.displaySection.style.backgroundImage =
           "linear-gradient(to right, rgba(55, 55, 109, 0.4), rgba(52, 109, 52, 0.4), rgba(133, 100, 58, 0.4))";
       }
