@@ -30,13 +30,11 @@
 
 **Desktop View:**
 
-<!-- <img src="./readme-assets/desktop.png" alt="desktop view"> -->
+<img src="./readme-assets/desktop.png" alt="desktop view">
 <br>
 
 **Mobile View:**
-
-<!-- <img src="./readme-assets/mobile.png" alt="desktop view"> -->
-
+Desktop application
 
 </details>
 
