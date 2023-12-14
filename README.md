@@ -47,12 +47,12 @@ Builds a weather forecast website using APIs.
 <details>
 <summary>Features</summary>
 
-* Display a 7-day weather forecast for any location.
-* Set background based on location's Time and Temperature.
-* Display location's root (Continent, Country, Region).
-* Display Date and Time of location at time of forecast.
+* Fetch a 7-day weather forecast for any location.
+* Sets background based on location's Time and Temperature.
+* Displays location's root (Continent, Country, Region).
+* Displays Date and Time of location at time of forecast.
 * Toggle Temperature unit (Fahrenheit/Celsius) and Wind Speed unit (KPH/MPH).
-* Display a slideshow of the next 6-day weather forecast.
+* Trigger a slideshow of the next 6-day weather forecast.
 * View detailed weather by hovering over the 6-day forecast.
 * Displays forecast details in readable format.
 * Smooth loading animation during search.
