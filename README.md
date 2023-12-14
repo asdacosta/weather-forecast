@@ -113,7 +113,7 @@ Developers, users, recruiters.
 
 - [ ] Add hourly weather forecast for current day. (Check other works for inspo)
 - [ ] Use better background images in .main-sec that depict current weather accurately (Set image for each condition.text in object).
-- [ ] Create mobile version. (Remember to work on this functionality in a separate branch).
+- [ ] Create mobile version with completely different UI. (Use apple weather app for inspo. Remember to work on this functionality in a separate branch).
 
 </details>
 
