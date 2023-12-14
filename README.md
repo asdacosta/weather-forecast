@@ -22,7 +22,7 @@
 
 **Demo:**
 
-<!-- ![Live Demo](./readme-assets/) -->
+![Live Demo](./readme-assets/weather-forecast.gif)
 
 <details>
 
