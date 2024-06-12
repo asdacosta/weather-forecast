@@ -49,10 +49,10 @@ const getNodes = (function () {
   const futureDates = [
     nextDayDate,
     thirdDayDate,
-    fourthDayDate,
-    fifthDayDate,
-    sixthDayDate,
-    lastDayDate,
+    // fourthDayDate,
+    // fifthDayDate,
+    // sixthDayDate,
+    // lastDayDate,
   ];
   // For swapIconForSunnyForecasts()
   const futureIcons = document.querySelectorAll(".first-sec div div");
@@ -66,10 +66,10 @@ const getNodes = (function () {
   const futureTemps = [
     nextDayTemp,
     thirdDayTemp,
-    fourthDayTemp,
-    fifthDayTemp,
-    sixthDayTemp,
-    lastDayTemp,
+    // fourthDayTemp,
+    // fifthDayTemp,
+    // sixthDayTemp,
+    // lastDayTemp,
   ];
   // For updateFutureRainForecast()
   const futureDivs = document.querySelectorAll(".first-sec fieldset");
@@ -301,15 +301,15 @@ const forecastFuture = (function () {
         case 2:
           formatAndDisplayDate(3, date);
           break;
-        case 3:
-          formatAndDisplayDate(4, date);
-          break;
-        case 4:
-          formatAndDisplayDate(5, date);
-          break;
-        case 5:
-          formatAndDisplayDate(6, date);
-          break;
+        // case 3:
+        //   formatAndDisplayDate(4, date);
+        //   break;
+        // case 4:
+        //   formatAndDisplayDate(5, date);
+        //   break;
+        // case 5:
+        //   formatAndDisplayDate(6, date);
+        //   break;
       }
     });
   };
@@ -330,15 +330,15 @@ const forecastFuture = (function () {
         case 2:
           displayTemp(3, temp);
           break;
-        case 3:
-          displayTemp(4, temp);
-          break;
-        case 4:
-          displayTemp(5, temp);
-          break;
-        case 5:
-          displayTemp(6, temp);
-          break;
+        // case 3:
+        //   displayTemp(4, temp);
+        //   break;
+        // case 4:
+        //   displayTemp(5, temp);
+        //   break;
+        // case 5:
+        //   displayTemp(6, temp);
+        //   break;
       }
     });
   };
@@ -359,15 +359,15 @@ const forecastFuture = (function () {
         case 2:
           displayTemp(3, temp);
           break;
-        case 3:
-          displayTemp(4, temp);
-          break;
-        case 4:
-          displayTemp(5, temp);
-          break;
-        case 5:
-          displayTemp(6, temp);
-          break;
+        // case 3:
+        //   displayTemp(4, temp);
+        //   break;
+        // case 4:
+        //   displayTemp(5, temp);
+        //   break;
+        // case 5:
+        //   displayTemp(6, temp);
+        //   break;
       }
     });
   };
