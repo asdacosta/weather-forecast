@@ -118,9 +118,4 @@ Developers, users, recruiters.
 ## 👤 Curator
 1. [Abraham Da Costa Silvanus](https://github.com/asdacosta) 
 
-<br>
-
-> [!IMPORTANT]
-> Seek contributor's consent for any code usage.
-
 **[🞁 Top](#weather-forecast)**
