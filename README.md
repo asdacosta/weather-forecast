@@ -63,7 +63,7 @@ Builds a weather forecast website using APIs.
 To solidify concepts of `Promise, Async/Await and Using APIs` in JavaScript. 
 
 ## 👥 Intended Audience
-Developers, users, recruiters.
+Developers, users, and non-developers.
 
 > [!NOTE]
 > Users can install all dependencies using `package.json` file via:
