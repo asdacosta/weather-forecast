@@ -221,7 +221,7 @@ const setBackgroundImgs = function (location, report) {
   const coldNoon = (function () {
     if (hour >= 9 && min >= 0 && hour <= 16 && min <= 59 && report.temp_c <= 20) {
       getNodes.displaySection.style.background =
-        'url("./assets/cold.png") center center/cover';
+        'url("./assets/cold.jpg") center center/cover';
     }
   })();
   const evening = (function () {
