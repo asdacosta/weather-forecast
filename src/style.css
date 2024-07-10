@@ -1,3 +1,7 @@
+html {
+  background: black;
+}
+
 body * {
   letter-spacing: 0.1rem;
   /* border: 0.2rem solid red; */
@@ -422,6 +426,7 @@ svg {
     height: 100%;
     padding: 2rem 3rem;
     gap: 1rem;
+    background: rgba(2, 116, 116, 0.5);
   }
 
   .search-sec {
@@ -452,7 +457,7 @@ svg {
 
 @media (max-width: 500px) {
   body {
-    padding: 1rem;
+    padding: 1rem 1rem 2rem 1rem;
     gap: 1rem;
   }
 }
