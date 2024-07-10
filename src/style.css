@@ -1,5 +1,6 @@
 body * {
   letter-spacing: 0.1rem;
+  /* border: 0.2rem solid red; */
 }
 
 body {
@@ -137,8 +138,7 @@ button:hover {
   justify-self: center;
   border-radius: 1.5rem;
   padding: 1rem;
-  width: 100%;
-  height: 100%;
+  width: 95%;
   font-size: 1rem;
   color: white;
   display: flex;
@@ -163,7 +163,7 @@ button:hover {
   align-items: flex-start;
   color: white;
   padding: 1rem 0.5rem;
-  width: 90%;
+  width: 95%;
   height: 35rem;
   background-image: url(./assets/rain.jpg);
   background-size: cover;
@@ -418,7 +418,7 @@ svg {
 
 @media (max-width: 800px) {
   body {
-    grid-template: 0.5fr 3fr 10fr 7fr / repeat(2, 1fr);
+    grid-template: 0.5fr 10fr 3fr 7fr / repeat(2, 1fr);
     height: 100%;
     padding: 2rem 3rem;
     gap: 1rem;
@@ -429,19 +429,19 @@ svg {
     grid-column: 1 / -1;
   }
 
-  .first-sec {
+  .main-sec {
     grid-row: 2 / 3;
+    grid-column: 1 / -1;
+  }
+
+  .first-sec {
+    grid-row: 3 / 4;
     grid-column: 1 / 2;
   }
 
   .buttons-sec {
-    grid-row: 2 / 3;
-    grid-column: 2 / -1;
-  }
-
-  .main-sec {
     grid-row: 3 / 4;
-    grid-column: 1 / -1;
+    grid-column: 2 / -1;
   }
 
   .last-sec {
@@ -452,7 +452,7 @@ svg {
 
 @media (max-width: 500px) {
   body {
-    padding: 0.5rem 1rem;
+    padding: 1rem;
     gap: 1rem;
   }
 }
